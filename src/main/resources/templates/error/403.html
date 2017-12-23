@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>受限访问</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="text-center text-danger" style="margin: 30px auto">
+			<h4>亲，看到这个页面时请不要慌张，这并不代表您做错了什么，只是您没有获得相应的系统授权。</h4>
+		</div>
+		<div
+			th:replace="fragments/exceptionInfo::showException(${exceptionInfo})">
+		</div>
+	</div>
+</body>
+</html>

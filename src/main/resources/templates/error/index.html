@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>系统错误</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="text-center text-danger" style="margin: 30px auto">
+            <h4>亲，出错啦〜〜</h4>
+        </div>
+        <div
+            th:replace="fragments/exceptionInfo::showException(${exceptionInfo})">
+        </div>
+    </div>
+</body>
+</html>
