@@ -1,16 +1,18 @@
 package com.jrsoft.auth.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jrsoft.auth.entity.AuthPermission;
 import com.jrsoft.auth.entity.AuthRole;
 import com.jrsoft.auth.service.AuthPermissionService;
+import com.jrsoft.auth.service.AuthRoleService;
 
 /**
  * 
@@ -25,7 +27,10 @@ import com.jrsoft.auth.service.AuthPermissionService;
 @SpringBootTest
 public class AuthPermissionServiceTest {
 
-	@Autowired
+	@Resource
+	private AuthRoleService authRoleService;
+
+	@Resource
 	private AuthPermissionService authPermissionService;
 
 	@Test
@@ -46,6 +51,7 @@ public class AuthPermissionServiceTest {
 	}
 
 	@Test
+	@Transactional
 	public void testInsert() {
 		final String permissionName = "new permission";
 		AuthPermission p = new AuthPermission();
@@ -66,6 +72,7 @@ public class AuthPermissionServiceTest {
 	}
 
 	@Test
+	@Transactional
 	public void testUpdate() {
 		final String permissionName = "new permission";
 		final String newPermissionName = "new permission 123";
@@ -83,6 +90,7 @@ public class AuthPermissionServiceTest {
 	}
 
 	@Test
+	@Transactional
 	public void testDelete() {
 		final String permissionName = "new permission 123";
 		AuthPermission p = new AuthPermission();
@@ -99,14 +107,21 @@ public class AuthPermissionServiceTest {
 		AuthRole r = new AuthRole();
 		r.setRoleName("csr");
 
-		Assert.assertEquals(29, this.authPermissionService.findAllByRole(r).size());
+		Assert.assertEquals(29, this.authPermissionService.findRolePermissions(r).size());
 	}
 
 	@Test
 	public void testFindAllByRoleString() {
 		AuthRole r = new AuthRole();
 		r.setRoleName("csr");
-		Assert.assertEquals(29, this.authPermissionService.findAllByRole(r).size());
+		Assert.assertEquals(29, this.authPermissionService.findRolePermissions(r).size());
+	}
+	
+//	@Test
+	public void testGetUserMenuTree() {
+//		AuthUser user = new AuthUser("cmao");
+//		List<EasyTreeNode> menu = authPermissionService.getUserMenuTree(user);
+		
 	}
 
 }

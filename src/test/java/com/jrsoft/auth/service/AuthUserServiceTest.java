@@ -1,6 +1,6 @@
 package com.jrsoft.auth.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,10 +27,10 @@ import com.jrsoft.auth.service.AuthUserService;
 @SpringBootTest
 public class AuthUserServiceTest {
 	
-	@Autowired
+	@Resource
 	private AuthUserService authUserService;
 	
-	@Autowired
+	@Resource
 	private AuthRoleService authRoleService;
 
 	@Test
@@ -113,6 +113,7 @@ public class AuthUserServiceTest {
 	}
 	
 	@Test
+	@SuppressWarnings("deprecation")
 	public void testAddRole() {
 		AuthUser u = new AuthUser();
 		u.setUserName("cmao");
@@ -122,12 +123,13 @@ public class AuthUserServiceTest {
 		AuthRole role = this.authRoleService.findOne(r);//customer role
 		
 		//添加未关联的角色，应该返回true
-		Assert.assertEquals(true, this.authUserService.addRole(user, role));		
+		Assert.assertEquals(true, this.authUserService.grantRole(user, role));		
 		//添加已关联的角色，应该返回false
-		Assert.assertEquals(false, this.authUserService.addRole(user, role));
+		Assert.assertEquals(false, this.authUserService.grantRole(user, role));
 	}
 	
 	@Test
+	@SuppressWarnings("deprecation")
 	public void testRemoveRole() {
 		AuthUser u = new AuthUser();
 		u.setUserName("cmao");
@@ -137,9 +139,9 @@ public class AuthUserServiceTest {
 		AuthRole role = this.authRoleService.findOne(r);//customer role
 		
 		//移除已关联的角色，应该返回true
-		Assert.assertEquals(true, this.authUserService.removeRole(user, role));
+		Assert.assertEquals(true, this.authUserService.revokeRole(user, role));
 		//移除未关联的角色，应该返回false
-		Assert.assertEquals(false, this.authUserService.removeRole(user, role));
+		Assert.assertEquals(false, this.authUserService.revokeRole(user, role));
 	}
 
 }

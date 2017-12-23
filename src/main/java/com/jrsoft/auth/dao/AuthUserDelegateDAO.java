@@ -13,13 +13,10 @@ import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.mapping.FetchType;
-import org.springframework.stereotype.Repository;
 
 import com.jrsoft.auth.entity.AuthUserDelegate;
 
 /**
- * com.jrsoft.auth.dao AuthUserDelegateDAO
- * 
  * 身份代理数据访问类
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
@@ -27,7 +24,6 @@ import com.jrsoft.auth.entity.AuthUserDelegate;
  * @version 1.0
  *
  */
-@Repository
 public interface AuthUserDelegateDAO {
 
 	/**
@@ -38,8 +34,8 @@ public interface AuthUserDelegateDAO {
 	 */
 	@Select("CALL sp_findAllDelegates(#{fromUserId})")
 	@Results({
-			@Result(property = "fromUser", column = "from_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.LAZY) ),
-			@Result(property = "toUser", column = "to_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.LAZY) ),
+			@Result(property = "fromUser", column = "from_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.EAGER) ),
+			@Result(property = "toUser", column = "to_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.EAGER) ),
 			@Result(property = "startDate", column = "start_date"), @Result(property = "endDate", column = "end_date"),
 			@Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
@@ -54,8 +50,8 @@ public interface AuthUserDelegateDAO {
 	 */
 	@Select("CALL sp_findAllClients(${toUserId})")
 	@Results({
-			@Result(property = "fromUser", column = "from_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.LAZY) ),
-			@Result(property = "toUser", column = "to_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.LAZY) ),
+			@Result(property = "fromUser", column = "from_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.EAGER) ),
+			@Result(property = "toUser", column = "to_user_id", one = @One(select = "com.jrsoft.auth.dao.AuthUserDAO.findById", fetchType = FetchType.EAGER) ),
 			@Result(property = "startDate", column = "start_date"), @Result(property = "endDate", column = "end_date"),
 			@Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),

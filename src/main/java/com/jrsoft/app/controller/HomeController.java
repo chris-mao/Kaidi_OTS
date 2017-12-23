@@ -3,17 +3,13 @@
  */
 package com.jrsoft.app.controller;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.jrsoft.auth.entity.AuthUserDelegate;
-import com.jrsoft.auth.helper.AuthHelper;
-import com.jrsoft.auth.service.AuthUserDelegateService;
+import com.jrsoft.auth.utils.AuthUtils;
 
 /**
  * com.jrsoft.app.controller HomeController
@@ -29,23 +25,18 @@ import com.jrsoft.auth.service.AuthUserDelegateService;
 public class HomeController {
 
 	/**
-	 * 
-	 */
-	@Autowired
-	private AuthUserDelegateService authUserDelegateService;
-
-	/**
 	 * 首页
 	 * 
 	 * @param request
-	 * @param model
+	 * @param map
 	 * @return
 	 */
 	@GetMapping({ "/", "/index" })
 	public String index(HttpServletRequest request, Model model) {
-		// 委托人
-		List<AuthUserDelegate> clients = this.authUserDelegateService.findAllByToUser(AuthHelper.getCurrentUser());
-		model.addAttribute("clients", clients);
+		// 当前身份
+		model.addAttribute("currentUser", AuthUtils.getCurrentUser());
+		// 前一个身份
+		model.addAttribute("previousUser", AuthUtils.getPreviousUser());
 		return "index";
 	}
 

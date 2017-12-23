@@ -4,9 +4,9 @@
 package com.jrsoft.auth.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -15,12 +15,14 @@ import com.jrsoft.auth.AuthUserStateEnum;
 import com.jrsoft.auth.dao.AuthUserDAO;
 import com.jrsoft.auth.entity.AuthRole;
 import com.jrsoft.auth.entity.AuthUser;
+import com.jrsoft.auth.entity.AuthUserRoleReleation;
 import com.jrsoft.auth.service.AuthUserService;
+import com.jrsoft.common.EasyDataGrid;
 
 /**
- * com.jrsoft.auth.service.impl AuthUserServiceImpl
- * 
  * 系统用户服务接口实现类
+ * 
+ * @see AuthUserService
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
@@ -30,9 +32,9 @@ import com.jrsoft.auth.service.AuthUserService;
 @Service
 public class AuthUserServiceImpl implements AuthUserService {
 
-	@Value("${pageSize}")
-	private int pageSize = 20;
-
+	/**
+	 * com.jrsoft.auth.dao.AuthUserDAO
+	 */
 	@Autowired
 	private AuthUserDAO authUserDAO;
 
@@ -42,14 +44,33 @@ public class AuthUserServiceImpl implements AuthUserService {
 	}
 
 	@Override
-	public PageInfo<AuthUser> findAll(int pageNum) {
-		PageHelper.startPage(pageNum, pageSize);
+	public List<AuthUser> findAll(boolean onlyAvailable) {
+		return authUserDAO.findAll(onlyAvailable);
+	}
+
+	@Override
+	public PageInfo<AuthUser> findAll(int pageIndex, int pageSize) {
+		PageHelper.startPage(pageIndex, pageSize);
 		return new PageInfo<AuthUser>(authUserDAO.findAll(false));
 	}
 
 	@Override
-	public List<AuthUser> findAllAvailableUser() {
-		return authUserDAO.findAll(true);
+	public EasyDataGrid<AuthUser> findAll(int pageIndex, int pageSize, String searchStr) {
+		PageInfo<AuthUser> pageInfo;
+		if (searchStr.isEmpty()) {
+			pageInfo = this.findAll(pageIndex, pageSize);
+		} else {
+			AuthUser user = new AuthUser();
+			user.setUserName("%" + searchStr + "%");
+			user.setNickName("%" + searchStr + "%");
+			PageHelper.startPage(pageIndex, pageSize);
+			pageInfo = new PageInfo<AuthUser>(authUserDAO.fuzzyQuery(user));
+		}
+
+		EasyDataGrid<AuthUser> dg = new EasyDataGrid<AuthUser>();
+		dg.setTotal(pageInfo.getTotal());
+		dg.setRows(pageInfo.getList());
+		return dg;
 	}
 
 	@Override
@@ -85,21 +106,64 @@ public class AuthUserServiceImpl implements AuthUserService {
 	}
 
 	@Override
-	public boolean addRole(AuthUser user, AuthRole role) {
+	public Set<AuthUserRoleReleation> findUserRoles(int id) {
+		return authUserDAO.findUserRoles(id);
+	}
+
+	@Override
+	@SuppressWarnings("deprecation")
+	public boolean grantRole(AuthUser user, AuthRole role) {
 		return 1 == this.authUserDAO.addRole(user.getUserId(), role.getRoleId());
 	}
 
 	@Override
-	public boolean removeRole(AuthUser user, AuthRole role) {
+	@SuppressWarnings("deprecation")
+	public boolean revokeRole(AuthUser user, AuthRole role) {
 		return 1 == this.authUserDAO.removeRole(user.getUserId(), role.getRoleId());
 	}
 
 	@Override
-	public void removeAllRoles(AuthUser user) {
+	@SuppressWarnings("deprecation")
+	public void revokeAllRoles(AuthUser user) {
 		if (0 != user.getUserId()) {
 			this.authUserDAO.removeAllRoles(user.getUserId());
 		}
+	}
 
+	@Override
+	public boolean grantRole(AuthUserRoleReleation releation) {
+		return this.authUserDAO.addRoleRelation(releation) == 1;
+	}
+
+	@Override
+	public boolean updateGrantedRole(AuthUserRoleReleation releation) {
+		return authUserDAO.updateRoleRelation(releation) == 1;
+	}
+
+	@Override
+	public boolean revokeRole(AuthUserRoleReleation releation) {
+		return authUserDAO.deleteRoleRelation(releation) == 1;
+	}
+
+	private boolean lockUser(AuthUser user) {
+		user.setState(AuthUserStateEnum.LOCKED);
+		return update(user);
+	}
+
+	@Override
+	public void lockUser(int userId) {
+		AuthUser user = authUserDAO.findById(userId);
+		if (null != user) {
+			lockUser(user);
+		}
+	}
+
+	@Override
+	public void lockUser(String userName) {
+		AuthUser user = authUserDAO.findByName(userName);
+		if (null != user) {
+			lockUser(user);
+		}
 	}
 
 }

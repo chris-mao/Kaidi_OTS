@@ -15,37 +15,37 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Repository;
-
 import com.jrsoft.auth.dao.sqlprovider.AuthRoleDynaSqlProvider;
 import com.jrsoft.auth.entity.AuthRole;
 
 /**
- * com.jrsoft.auth.dao AuthRoleDao
- * 
  * 系统角色数据访问类
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
- * @version 1.0
+ * @version 1.1
  *
  */
-@Repository
 public interface AuthRoleDAO {
 
 	/**
 	 * 查询所有角色信息
 	 * 
 	 * @param onlyAvailable
-	 *            true仅查询所有可用角色，否则查询所有角色
+	 *            <code>true</code>仅查询所有可用角色，否则查询所有角色
 	 * 
 	 * @return List
 	 */
 	@SelectProvider(method = "findAllSql", type = AuthRoleDynaSqlProvider.class)
 	@Results({ @Result(property = "roleId", column = "role_id", id = true),
-			@Result(property = "roleName", column = "role_name"), @Result(property = "available", column = "available"),
+			@Result(property = "roleName", column = "role_name"),
+			@Result(property = "roleDescription", column = "role_description"),
+			@Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
+	// @Result(property = "permissions", column = "role_id", many = @Many(select
+	// = "com.jrsoft.auth.dao.AuthPermissionDAO.findAllByRoleId", fetchType =
+	// FetchType.LAZY) ) })
 	public List<AuthRole> findAll(@Param(value = "available") boolean onlyAvailable);
 
 	/**
@@ -54,11 +54,15 @@ public interface AuthRoleDAO {
 	 * @param id
 	 * @return AuthRole
 	 */
-	@Select("SELECT role_id, role_name, available, created_time, update_time FROM auth_role WHERE role_id = #{id}")
+	@Select("SELECT role_id, role_name, role_description, available, created_time, update_time FROM auth_role WHERE role_id = #{id}")
 	@Results({ @Result(property = "roleId", column = "role_id", id = true),
-			@Result(property = "roleName", column = "role_name"), @Result(property = "available", column = "available"),
+			@Result(property = "roleName", column = "role_name"),
+			@Result(property = "roleDescription", column = "role_description"), @Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
+	// @Result(property = "permissions", column = "role_id", many = @Many(select
+	// = "com.jrsoft.auth.dao.AuthPermissionDAO.findAllByRoleId", fetchType =
+	// FetchType.LAZY) ) })
 	public AuthRole findById(@Param(value = "id") int id);
 
 	/**
@@ -67,12 +71,31 @@ public interface AuthRoleDAO {
 	 * @param roleName
 	 * @return AuthRole
 	 */
-	@Select("SELECT role_id, role_name, available, created_time, update_time FROM auth_role WHERE role_name = #{name}")
+	@Select("SELECT role_id, role_name, role_description, available, created_time, update_time FROM auth_role WHERE role_name = #{name}")
 	@Results({ @Result(property = "roleId", column = "role_id", id = true),
-			@Result(property = "roleName", column = "role_name"), @Result(property = "available", column = "available"),
+			@Result(property = "roleName", column = "role_name"),
+			@Result(property = "roleDescription", column = "role_description"), @Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
+	// @Result(property = "permissions", column = "role_id", many = @Many(select
+	// = "com.jrsoft.auth.dao.AuthPermissionDAO.findAllByRoleId", fetchType =
+	// FetchType.LAZY) ) })
 	public AuthRole findByName(@Param(value = "name") String roleName);
+	
+	/**
+	 * 按角色名模糊查询
+	 * 
+	 * @since 1.1
+	 * @param roleName
+	 * @return
+	 */
+	@Select("SELECT role_id, role_name, role_description, available, created_time, update_time FROM auth_role WHERE role_name LIKE #{name}")
+	@Results({ @Result(property = "roleId", column = "role_id", id = true),
+			@Result(property = "roleName", column = "role_name"),
+			@Result(property = "roleDescription", column = "role_description"), @Result(property = "available", column = "available"),
+			@Result(property = "createdTime", column = "created_time"),
+			@Result(property = "updateTime", column = "update_time") })
+	public List<AuthRole> fuzzyQuery(@Param(value = "name") String roleName);
 
 	/**
 	 * 根据用户编号查询其所拥有的有效角色清单
@@ -84,7 +107,8 @@ public interface AuthRoleDAO {
 	// AuthRoleDynaSqlProvider.class)
 	@Select("CALL sp_findUserRoles(#{id})")
 	@Results({ @Result(property = "roleId", column = "role_id", id = true),
-			@Result(property = "roleName", column = "role_name"), @Result(property = "available", column = "available"),
+			@Result(property = "roleName", column = "role_name"),
+			@Result(property = "roleDescription", column = "role_description"), @Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
 	// @Result(property = "permissions", column = "role_id", many = @Many(select
@@ -98,7 +122,7 @@ public interface AuthRoleDAO {
 	 * @param role
 	 * @return 返回受影响的行数
 	 */
-	@Insert("INSERT INTO auth_role(role_name, available, created_time) VALUES(#{roleName}, #{available}, NOW())")
+	@Insert("INSERT INTO auth_role(role_name, role_description, available, created_time) VALUES(#{roleName}, #{roleDescription}, #{available}, NOW())")
 	@Options(useGeneratedKeys = true, keyProperty = "roleId")
 	public int insert(AuthRole role);
 
@@ -108,7 +132,7 @@ public interface AuthRoleDAO {
 	 * @param role
 	 * @return 返回受影响的行数
 	 */
-	@Update("UPDATE auth_role SET role_name = #{roleName}, available = #{available} WHERE role_id = #{roleId}")
+	@Update("UPDATE auth_role SET role_name = #{roleName}, role_description = #{roleDescription}, available = #{available} WHERE role_id = #{roleId}")
 	public int udpate(AuthRole role);
 
 	/**
@@ -128,7 +152,8 @@ public interface AuthRoleDAO {
 	 * @return
 	 */
 	@Insert("INSERT IGNORE auth_role_permission(role_id, permission_id, available, start_date, created_time) VALUE(#{roleId}, #{permissionId}, 1, CURDATE(), NOW())")
-	public int addPermission(@Param(value = "roleId") int roleId, @Param(value = "permissionId") int permissionId);
+	public int addPermission(@Param(value = "roleId") int roleId,
+			@Param(value = "permissionId") int permissionId);
 
 	/**
 	 * 移除已有权限
@@ -138,8 +163,9 @@ public interface AuthRoleDAO {
 	 * @return
 	 */
 	@Delete("DELETE FROM auth_role_permission WHERE role_id = #{roleId} AND permission_id = #{permissionId}")
-	public int removePermission(@Param(value = "roleId") int roleId, @Param(value = "permissionId") int permissionId);
-
+	public int removePermission(@Param(value = "roleId") int roleId,
+			@Param(value = "permissionId") int permissionId);
+	
 	/**
 	 * 移除指定角色上所有权限
 	 * 

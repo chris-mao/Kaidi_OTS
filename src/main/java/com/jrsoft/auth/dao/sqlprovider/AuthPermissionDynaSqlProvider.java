@@ -7,8 +7,6 @@ import org.apache.ibatis.jdbc.SQL;
 
 /**
  * com.jrsoft.auth.dao.sqlprovider AuthPermissionDynaSqlProvider
- * 
- * 权限查询动态SQL提供者类
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
@@ -26,12 +24,13 @@ public class AuthPermissionDynaSqlProvider {
 	public String findAllSql(boolean onlyAvailable) {
 		return new SQL() {
 			{
-				SELECT("permission_id, permission_name, permission_url, available, created_time, update_time");
+				SELECT("permission_id, permission_name, permission_text, permission_kind, permission_url, weight, parent_id, available, created_time, update_time");
 				FROM("auth_permission");
 				if (onlyAvailable) {
 					WHERE("available = true");
 				}
-				ORDER_BY("permission_name");
+				WHERE("permission_kind is not null");
+				ORDER_BY("parent_id, weight");
 			}
 		}.toString();
 	}

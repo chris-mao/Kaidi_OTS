@@ -1,0 +1,163 @@
+.top-panel {
+	height: 80px;
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.top-panel .emerson {
+	width: 124px;
+	height: 70px;
+	display: block;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	/* background: transparent url(../img/logo.jpg) no-repeat center top; */
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.top-panel .banner {
+	float: left;
+	margin-left: 5px;
+	margin-top: 17px;
+	margin-right: 5px;
+	cursor: default;
+	font-size: 36px;
+	font-family: monospace, serif;
+}
+
+.top-panel .menu-combo {
+	float: right;
+	margin-left: 5px;
+	margin-top: 40px;
+	margin-right: 5px;
+}
+
+.top-panel .menu-combo label {
+	line-height: 21px;
+}
+
+.top-panle .user-panel {
+	float: right;
+	margin-left: 10px;
+	margin-top: 40px;
+}
+
+.user-panel .user {
+	float: left;
+	font-weight: bold;
+	margin-top: 4px;
+}
+
+.user-panel .agent {
+	float: left;
+	margin-left: 4px;
+}
+
+.top-panel .right-button-panel {
+	float: right;
+	margin-left: 4px;
+	margin-top: 40px;
+	margin-right: 10px;
+}
+
+.datagrid-toolbar {
+	padding: 5px;
+	height: auto;
+}
+
+.datagrid-toolbar .easyui-searchbox {
+	width: 200px;
+}
+
+.easyui-dialog form {
+	margin: 0;
+	padding: 20px;
+}
+
+.easyui-dialog form div {
+	margin-bottom: 20px;
+}
+
+.easyui-dialog form div:last-child {
+	margin-bottom: 0;
+}
+
+.dialog-button .easyui-linkbutton {
+	width: 90px;
+	min-width: 90px;
+}
+
+.large-bold-red {
+	color: #FF5500;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.small-bold-red {
+	color: #FF5500;
+	font: bold 18px tahoma;
+}
+
+.smaller-bold-red {
+	color: #FF5500;
+	font: bold 12px tahoma;
+}
+
+.highlight {
+	background-color: #FFFF99
+}
+
+.number {
+	font-size: 12px;
+	text-align: right;
+	padding-right: 4px;
+}
+
+.require-mark {
+	color: red;
+	padding-top: 2px;
+	padding-left: 4px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.double-under-line {
+	text-decoration: underline;
+	border-bottom: 1px solid;
+	padding: 1px;
+	padding-top: 0;
+}
+
+/*************************************************************************************************/
+.data-list {
+	margin: auto;
+	list-style: none;
+	line-height: 10px;
+	padding-left: 0;
+	font-size: 12px;
+}
+
+.data-list li {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-size: 10pt;
+	line-height: 21px;
+}
+
+.data-list li label {
+	width: 100px;
+}
+
+/*************************************************************************************************/
+.page-gone {
+	border: 1px solid red;
+	width: 600px;
+	height: 292px;
+	clear: both;
+	display: block;
+	background: transparent url(../img/404.jpg) no-repeat;
+}

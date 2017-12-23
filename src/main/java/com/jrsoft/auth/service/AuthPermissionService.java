@@ -4,83 +4,93 @@
 package com.jrsoft.auth.service;
 
 import java.util.List;
-import java.util.Set;
-
-import com.github.pagehelper.PageInfo;
+import com.jrsoft.app.service.AbstractDbService;
 import com.jrsoft.auth.entity.AuthPermission;
 import com.jrsoft.auth.entity.AuthRole;
+import com.jrsoft.auth.entity.AuthUser;
+import com.jrsoft.common.EasyDataGrid;
 
 /**
- * com.jrsoft.auth.service AuthPermissionService
- * 
  * 系统权限服务接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
- * @version 1.0
+ * @version 1.3
  *
  */
-public interface AuthPermissionService {
-
+public interface AuthPermissionService extends AbstractDbService<AuthPermission> {
+	
 	/**
-	 * 查询所有权限，不分页
+	 * 根据传入的父节点编号查询其子节点数据，且有分页功能，如果参数searchStr不为空，则查询指定节点下所有符合查询条件(
+	 * permission_name或是permission_text包含查询条件)的子节点
 	 * 
-	 * @return List
+	 * @since 1.3
+	 * @param parentId
+	 *            父节点编号
+	 * @param pageIndex
+	 *            页码
+	 * @param pageSize
+	 *            分页大小
+	 * @param searchStr
+	 *            模糊查询内容
+	 * @return
 	 */
-	public List<AuthPermission> findAll();
-
+	public EasyDataGrid<AuthPermission> findChildNodes(int parentId, int pageIndex, int pageSize, String searchStr);
+	
 	/**
-	 * 查询所有权限，分页
+	 * 根据系统中所有有效的权限构建权限树
 	 * 
-	 * @param pageNum
-	 * @return PageInfo
+	 * @since 1.1
+	 * @return
 	 */
-	public PageInfo<AuthPermission> findAll(int pageNum);
-
-	/**
-	 * 查询所有有效的权限信息
-	 * 
-	 * @return List
-	 */
-	public List<AuthPermission> findAllAvailable();
-
-	/**
-	 * 按权限编号或是名称查询
-	 * 
-	 * @param permission
-	 * @return AuthPermission
-	 */
-	public AuthPermission findOne(AuthPermission permission);
-
-	/**
-	 * 创建新权限
-	 * 
-	 * @param permission
-	 * @return 成功返回true,否则返回false
-	 */
-	public boolean insert(AuthPermission permission);
-
-	/**
-	 * 更新权限
-	 * 
-	 * @param permission
-	 * @return 成功返回true,否则返回false
-	 */
-	public boolean update(AuthPermission permission);
-
-	/**
-	 * 删除权限
-	 * 
-	 * @param permission
-	 * @return 成功返回true,否则返回false
-	 */
-	public boolean delete(int id);
+	public List<AuthPermission> getPermissionTree();
 
 	/**
 	 * 按角色编号或是角色名称查询其所拥有的权限
 	 * 
+	 * @since 1.0
 	 * @param role
 	 * @return Set
 	 */
-	public Set<AuthPermission> findAllByRole(AuthRole role);
+	public List<AuthPermission> findRolePermissions(AuthRole role);
+
+	/**
+	 * 构建角色权限树
+	 * 
+	 * @since 1.1
+	 * @param role
+	 * @return
+	 */
+	public List<AuthPermission> getRolePermissionTree(AuthRole role);
+
+	/**
+	 * 按用户编号或是用户名称查询其所拥有的个人权限
+	 * 
+	 * @since 1.1
+	 * @param user
+	 * @return
+	 */
+	public List<AuthPermission> findIndividualPermissions(AuthUser user);
+
+	/**
+	 * 构建用户个人权限树
+	 * 
+	 * @since 1.1
+	 * @param user
+	 * @return
+	 */
+	public List<AuthPermission> getIndividualPermissionTree(AuthUser user);
+
+	/**
+	 * 获取用户的菜单树
+	 * <p>
+	 * 查询其所拥有的角色权限及个人权限中查找所有<code>permission_kind</code>是<code>menu</code>
+	 * 的权限，并返回其树型数据结构
+	 * </p>
+	 * 
+	 * @since 1.3
+	 * @param user
+	 * @return
+	 */
+	public List<AuthPermission> getMenuTreeByUser(AuthUser user);
 }

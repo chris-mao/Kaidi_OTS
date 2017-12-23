@@ -6,16 +6,11 @@ package com.jrsoft.customer.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.Max;
-
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * com.jrsoft.customer.entity CustomerSite
  *
- * 客户地址实体类
- * 
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
  * @version 1.0
@@ -31,7 +26,17 @@ public class CustomerSite implements Serializable {
 	/**
 	 * 
 	 */
-	private int customerId;
+	public static final String BILL_TO = "BILL_TO";
+
+	/**
+	 * 
+	 */
+	public static final String SHIP_TO = "SHIP_TO";
+
+	/**
+	 * 
+	 */
+	public static final String DELIVER_TO = "DELIVER_TO";
 
 	/**
 	 * 
@@ -41,28 +46,17 @@ public class CustomerSite implements Serializable {
 	/**
 	 * 
 	 */
-	@NotEmpty(message = "")
-	private int operationUnitId;
-
-	/**
-	 * 
-	 */
-	@NotEmpty(message = "")
-	private String operationUnitName;
-
-	/**
-	 * 
-	 */
-	@NotEmpty(message = "")
-	@Max(value = 64, message = "")
 	private String sitePurpose;
 
 	/**
 	 * 
 	 */
-	@NotEmpty(message = "")
-	@Max(value = 200, message = "")
 	private String address;
+
+	/**
+	 * 是否有效
+	 */
+	private boolean available = true;
 
 	/**
 	 * 创建时间
@@ -77,26 +71,6 @@ public class CustomerSite implements Serializable {
 	private Date updateTime;
 
 	/**
-	 * 是否有效
-	 */
-	private boolean available = true;
-
-	/**
-	 * @return the customerId
-	 */
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	/**
-	 * @param customerId
-	 *            the customerId to set
-	 */
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	/**
 	 * @return the siteId
 	 */
 	public int getSiteId() {
@@ -109,36 +83,6 @@ public class CustomerSite implements Serializable {
 	 */
 	public void setSiteId(int siteId) {
 		this.siteId = siteId;
-	}
-
-	/**
-	 * @return the operationUnitId
-	 */
-	public int getOperationUnitId() {
-		return operationUnitId;
-	}
-
-	/**
-	 * @param operationUnitId
-	 *            the operationUnitId to set
-	 */
-	public void setOperationUnitId(int operationUnitId) {
-		this.operationUnitId = operationUnitId;
-	}
-
-	/**
-	 * @return the operationUnitName
-	 */
-	public String getOperationUnitName() {
-		return operationUnitName;
-	}
-
-	/**
-	 * @param operationUnitName
-	 *            the operationUnitName to set
-	 */
-	public void setOperationUnitName(String operationUnitName) {
-		this.operationUnitName = operationUnitName;
 	}
 
 	/**
@@ -157,6 +101,34 @@ public class CustomerSite implements Serializable {
 	}
 
 	/**
+	 * @return the countryCode
+	 */
+	public String getCountryCode() {
+		return "";
+	}
+
+	/**
+	 * @return the province
+	 */
+	public String getProvince() {
+		return "";
+	}
+
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return "";
+	}
+
+	/**
+	 * @return the area
+	 */
+	public String getArea() {
+		return "";
+	}
+
+	/**
 	 * @return the address
 	 */
 	public String getAddress() {
@@ -169,6 +141,21 @@ public class CustomerSite implements Serializable {
 	 */
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	/**
+	 * @return the available
+	 */
+	public boolean isAvailable() {
+		return available;
+	}
+
+	/**
+	 * @param available
+	 *            the available to set
+	 */
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 	/**
@@ -201,86 +188,4 @@ public class CustomerSite implements Serializable {
 		this.updateTime = updateTime;
 	}
 
-	/**
-	 * @return the available
-	 */
-	public boolean getAvailable() {
-		return available;
-	}
-
-	/**
-	 * @param available
-	 *            the available to set
-	 */
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "CustomerSite [customerId=" + customerId + ", siteId=" + siteId + ", operationUnitId=" + operationUnitId
-				+ ", operationUnitName=" + operationUnitName + ", sitePurpose=" + sitePurpose + ", address=" + address
-				+ ", createdTime=" + createdTime + ", updateTime=" + updateTime + ", available=" + available + "]";
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + customerId;
-		result = prime * result + operationUnitId;
-		result = prime * result + ((operationUnitName == null) ? 0 : operationUnitName.hashCode());
-		result = prime * result + siteId;
-		result = prime * result + ((sitePurpose == null) ? 0 : sitePurpose.hashCode());
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CustomerSite other = (CustomerSite) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (customerId != other.customerId)
-			return false;
-		if (operationUnitId != other.operationUnitId)
-			return false;
-		if (operationUnitName == null) {
-			if (other.operationUnitName != null)
-				return false;
-		} else if (!operationUnitName.equals(other.operationUnitName))
-			return false;
-		if (siteId != other.siteId)
-			return false;
-		if (sitePurpose == null) {
-			if (other.sitePurpose != null)
-				return false;
-		} else if (!sitePurpose.equals(other.sitePurpose))
-			return false;
-		return true;
-	}
 }

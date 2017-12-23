@@ -1,8 +1,9 @@
 package com.jrsoft.auth.shiro;
 
+import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -48,13 +49,13 @@ public class JrShiroRealm extends AuthorizingRealm {
 	/**
 	 * 
 	 */
-	@Autowired
+	@Resource
 	private AuthUserService authUserService;
 
-	@Autowired
+	@Resource
 	private AuthRoleService authRoleService;
 
-	@Autowired
+	@Resource
 	private AuthPermissionService authPermissionService;
 
 	/**
@@ -75,7 +76,7 @@ public class JrShiroRealm extends AuthorizingRealm {
 		for (AuthRole role : roles) {
 			authorizationInfo.addRole(role.getRoleName());
 			logger.info("==> 读取角色[" + role.getRoleName() + "]关联的权限...");
-			Set<AuthPermission> permissions = authPermissionService.findAllByRole(role);
+			List<AuthPermission> permissions = authPermissionService.findRolePermissions(role);
 			for (AuthPermission permission : permissions) {
 				logger.info("==> 获取权限[" + permission.getPermissionName() + "]");
 				authorizationInfo.addStringPermission(permission.getPermissionName());
@@ -83,13 +84,12 @@ public class JrShiroRealm extends AuthorizingRealm {
 		}
 
 		// 获取用户特有的权限（暂未实现）
-		// Set<AuthPermission> permissions =
-		// this.authPermissionService.findAllByUser(user);
-		// if (null != permissions) {
-		// for (AuthPermission permission : permissions) {
-		// authorizationInfo.addStringPermission(permission.getPermissionName());
-		// }
-		// }
+		List<AuthPermission> permissions = this.authPermissionService.findIndividualPermissions(user);
+		if (null != permissions) {
+			for (AuthPermission permission : permissions) {
+				authorizationInfo.addStringPermission(permission.getPermissionName());
+			}
+		}
 		return authorizationInfo;
 	}
 

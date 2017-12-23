@@ -36,28 +36,29 @@ public class ServiceLogAspect {
 
 	@Before("log()")
 	public void beforeLog(JoinPoint joinPoint) {
+		logger.info("=============");
+
 		// class
 		logger.info("服务类 {} 中的 {} 方法被调用", joinPoint.getSignature().getDeclaringTypeName(),
 				joinPoint.getSignature().getName());
 
 		// parameters
 		for (Object obj : joinPoint.getArgs()) {
-			logger.info("调用参数 = {}", obj);
+			 logger.info("调用参数 = {}", obj);
 		}
 	}
 
 	@After("log()")
-	public void afterLog(JoinPoint joinPoint) {
-		logger.info("服务类 {} 中的 {} 方法调用结束", joinPoint.getSignature().getDeclaringTypeName(),
-				joinPoint.getSignature().getName());
+	public void afterLog() {
+		// logger.info("====== Lunch End ======");
 	}
 
 	@AfterReturning(pointcut = "log()", returning = "object")
 	public void afterReturning(Object object) {
-		logger.info("服务返回值是： {}", object);
-		logger.info("服务调用正常结束");
+		logger.info("返回值是： {}", object);
+		logger.info("====== 服务类调用正常结束 ======");
 	}
-
+	
 	@AfterThrowing(pointcut = "log()", throwing = "e")
 	public void afterThrowing(JoinPoint joinPoint, Throwable e) {
 		logger.warn("服务调用出错！！！");
@@ -66,11 +67,11 @@ public class ServiceLogAspect {
 
 		// parameters
 		for (Object obj : joinPoint.getArgs()) {
-			logger.warn("调用参数 = {}", obj);
+			 logger.warn("调用参数 = {}", obj);
 		}
 		logger.warn("异常名称：{}", e.getClass().getName());
 		logger.warn("异常描述：{}", e.getMessage());
-
+		
 		// TODO 将调用信息写到数据库中
 	}
 }
