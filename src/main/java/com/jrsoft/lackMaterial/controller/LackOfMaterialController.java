@@ -31,7 +31,7 @@ public class LackOfMaterialController {
 	 * @return
 	 */
 	@GetMapping({ "", "/index" })
-	@RequiresPermissions("lom:list")
+//	@RequiresPermissions("lom:list")
 	public String index() {
 		return "lom/index";
 	}

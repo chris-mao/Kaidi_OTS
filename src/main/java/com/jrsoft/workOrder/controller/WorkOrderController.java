@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping("/wos")
+@RequestMapping("/workorders")
 public class WorkOrderController {
 	
 	/**
@@ -26,7 +26,7 @@ public class WorkOrderController {
 	 * @return
 	 */
 	@GetMapping({ "", "/index" })
-	@RequiresPermissions("wo:list")
+//	@RequiresPermissions("wo:list")
 	public String index() {
 		return "wo/index";
 	}
