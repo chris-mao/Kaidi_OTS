@@ -11,6 +11,30 @@ body {
 	padding-bottom: 40px;
 }
 
+.system-title {
+	font-size: 42px;
+	font-weight: bolder;
+	color: #428bca;
+	text-shadow: #37A4A2 1px 3px 5px;
+	margin-top: 12px;
+	margin-bottom: 10px;
+	text-align: center;
+	line-height: 1.5em;
+}
+
+.system-title span {
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+.kaidi {
+	width: 647px;
+	height: 103px;
+	display: block;
+	margin: 10px auto;
+	background: transparent url(../img/kaidi.jpg) no-repeat center top;
+}
+
 .form-signin {
 	max-width: 330px;
 	padding: 15px;

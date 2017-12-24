@@ -23,7 +23,7 @@ public class EmployeeDynaSqlProvider {
 	 */
 	public String findAllSql(boolean onlyAvailable) {
 		return new SQL(){{
-			SELECT("employee_id, employee_name, email, fax, phone, oracle_account, user_id, report_to, available, created_time, update_time");
+			SELECT("employee_id, employee_name, email, fax, phone, user_id, report_to, available, created_time, update_time");
 			FROM("employee");
 			if (onlyAvailable) {
 				WHERE("available = 1");
