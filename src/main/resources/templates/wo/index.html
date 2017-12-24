@@ -24,11 +24,11 @@
 			<div style="line-height: 40px;">
 				<div style="float: left; margin-left: 10px;">
 					<label>工单号码</label> <input name="" class="easyui-textbox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>订单号</label> <input name="" class="easyui-textbox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>产品型号</label> <input name="" class="easyui-textbox"
@@ -36,11 +36,11 @@
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>生产车间</label> <input name="" class="easyui-textbox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>制单日期</label> <input name="" class="easyui-datebox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 			</div>
 			<div style="line-height: 20px;">
@@ -55,7 +55,7 @@
 						name="" class="easyui-datebox" style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
-					<a href="#" class="easyui-linkbutton" style="width: 100px;">查&nbsp;&nbsp;询</a>
+					<a href="#" class="easyui-linkbutton" style="width: 80px;">查&nbsp;&nbsp;询</a>
 				</div>
 			</div>
 		</div>
@@ -66,8 +66,8 @@
 				<thead>
 					<tr>
 						<th rowspan="2" data-options="field:'ck',checkbox:true"></th>
-                        <th rowspan="2" field="workOrderNumber" style="width: 120px"
-                            align="center">工单号码</th>
+						<th rowspan="2" field="workOrderNumber" style="width: 120px"
+							align="center">工单号码</th>
 						<th colspan="2">销售订单</th>
 						<th rowspan="2" field="model" style="width: 160px" align="center">产品型号</th>
 						<th rowspan="2" field="qty" style="width: 60px" align="right">生产数量</th>
@@ -80,10 +80,8 @@
 							align="center" formatter="dateTimeFormatter">更新时间</th>
 					</tr>
 					<tr>
-                        <th field="workOrderName" style="width: 140px"
-                            align="center">单据号码</th>
-                        <th field="nickName" style="width: 40px"
-                            align="center">行号</th>
+						<th field="workOrderName" style="width: 140px" align="center">单据号码</th>
+						<th field="nickName" style="width: 40px" align="center">行号</th>
 						<th field="etd" style="width: 120px" align="center">预估</th>
 						<th field="atd" style="width: 120px" align="center">实际</th>
 					</tr>
@@ -101,9 +99,9 @@
 					href="javascript:void(0)" class="easyui-linkbutton"
 					iconCls="icon-edit" plain="true" onclick="">实际完工日期</a> <a
 					href="javascript:void(0)" class="easyui-linkbutton"
-					iconCls="icon-remove" plain="true" onclick="">删除</a> <input
-					id="workOrderSearch" prompt="请输入工单号、订单号或是产品型号"
-					class="easyui-searchbox" />
+					iconCls="icon-remove" plain="true" onclick="">删除</a> <a
+					href="javascript:void(0)" class="easyui-linkbutton" plain="true"
+					onclick="">修改日志</a>
 			</div>
 		</div>
 	</div>

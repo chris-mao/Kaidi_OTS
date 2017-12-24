@@ -24,15 +24,15 @@
 			<div style="line-height: 40px;">
 				<div style="float: left; margin-left: 10px;">
 					<label>缺料单号码</label> <input name="" class="easyui-textbox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>订单号</label> <input name="" class="easyui-textbox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>采购单号</label> <input name="" class="easyui-textbox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>原材料</label> <input name="" class="easyui-textbox"
@@ -40,22 +40,22 @@
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<label>制单日期</label> <input name="" class="easyui-datebox"
-						style="width: 140px; height: 24px;" />
+						style="width: 120px; height: 24px;" />
 				</div>
 			</div>
 			<div style="line-height: 20px;">
 				<div style="float: left; margin-left: 10px;">
-					<label>预估送达日期</label> <input name="" class="easyui-datebox"
+					<label>预估到货日期</label> <input name="" class="easyui-datebox"
 						style="width: 120px; height: 24px;" /> <label>至</label> <input
 						name="" class="easyui-datebox" style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
-					<label>实际送达日期</label> <input name="" class="easyui-datebox"
+					<label>实际到货日期</label> <input name="" class="easyui-datebox"
 						style="width: 120px; height: 24px;" /> <label>至</label> <input
 						name="" class="easyui-datebox" style="width: 120px; height: 24px;" />
 				</div>
 				<div style="float: left; margin-left: 10px;">
-					<a href="#" class="easyui-linkbutton" style="width: 100px;">查&nbsp;&nbsp;询</a>
+					<a href="#" class="easyui-linkbutton" style="width: 80px;">查&nbsp;&nbsp;询</a>
 				</div>
 			</div>
 		</div>
@@ -65,44 +65,43 @@
 				toolbar="#customerDatagridToolbar">
 				<thead>
 					<tr>
-                        <th rowspan="2" data-options="field:'ck',checkbox:true"></th>
-                        <th rowspan="2" field="workOrderNumber" style="width: 120px"
-                            align="center">缺料单号码</th>
-                        <th colspan="2">销售订单</th>
-                        <th rowspan="2" field="model" style="width: 160px" align="center">原材料</th>
-                        <th rowspan="2" field="qty" style="width: 60px" align="right">缺少数量</th>
-                        <th rowspan="2" field="po_number" style="width: 120px" align="center">采购单号</th>
-                        <th colspan="2">送达日期</th>
-                        <th rowspan="2" field="createdTime" style="width: 140px"
-                            align="center" formatter="dateTimeFormatter">创建时间</th>
-                        <th rowspan="2" field="updateTime" style="width: 140px"
-                            align="center" formatter="dateTimeFormatter">更新时间</th>
-                    </tr>
-                    <tr>
-                        <th field="workOrderName" style="width: 140px"
-                            align="center">单据号码</th>
-                        <th field="nickName" style="width: 40px"
-                            align="center">行号</th>
-                        <th field="etd" style="width: 120px" align="center">预估</th>
-                        <th field="atd" style="width: 120px" align="center">实际</th>
-                    </tr>
+						<th rowspan="2" data-options="field:'ck',checkbox:true"></th>
+						<th rowspan="2" field="workOrderNumber" style="width: 120px"
+							align="center">缺料单号</th>
+						<th colspan="2">销售订单</th>
+						<th rowspan="2" field="model" style="width: 160px" align="center">原材料</th>
+						<th rowspan="2" field="qty" style="width: 60px" align="right">缺少数量</th>
+						<th rowspan="2" field="po_number" style="width: 120px"
+							align="center">采购单号</th>
+						<th colspan="2">到货日期</th>
+						<th rowspan="2" field="createdTime" style="width: 140px"
+							align="center" formatter="dateTimeFormatter">创建时间</th>
+						<th rowspan="2" field="updateTime" style="width: 140px"
+							align="center" formatter="dateTimeFormatter">更新时间</th>
+					</tr>
+					<tr>
+						<th field="workOrderName" style="width: 140px" align="center">单据号码</th>
+						<th field="nickName" style="width: 40px" align="center">行号</th>
+						<th field="etd" style="width: 120px" align="center">预估</th>
+						<th field="atd" style="width: 120px" align="center">实际</th>
+					</tr>
 				</thead>
 			</table>
 
 			<!-- 数据表格工具栏 -->
 			<div id="customerDatagridToolbar" class="datagrid-toolbar">
 				<a href="javascript:void(0)" class="easyui-linkbutton"
-                    iconCls="icon-add" plain="true" onclick="">新增</a> <a
-                    href="javascript:void(0)" class="easyui-linkbutton"
-                    iconCls="icon-edit" plain="true" onclick="">修改</a> <a
-                    href="javascript:void(0)" class="easyui-linkbutton"
-                    iconCls="icon-edit" plain="true" onclick="">采购回复</a> <a
-                    href="javascript:void(0)" class="easyui-linkbutton"
-                    iconCls="icon-edit" plain="true" onclick="">缺料收货</a> <a
-                    href="javascript:void(0)" class="easyui-linkbutton"
-                    iconCls="icon-remove" plain="true" onclick="">删除</a> <input
-                    id="workOrderSearch" prompt="请输入工单号、订单号或是产品型号"
-                    class="easyui-searchbox" />
+					iconCls="icon-add" plain="true" onclick="">新增</a> <a
+					href="javascript:void(0)" class="easyui-linkbutton"
+					iconCls="icon-edit" plain="true" onclick="">修改</a> <a
+					href="javascript:void(0)" class="easyui-linkbutton"
+					iconCls="icon-edit" plain="true" onclick="">采购回复</a> <a
+					href="javascript:void(0)" class="easyui-linkbutton"
+					iconCls="icon-edit" plain="true" onclick="">缺料收货</a> <a
+					href="javascript:void(0)" class="easyui-linkbutton"
+					iconCls="icon-remove" plain="true" onclick="">删除</a> <a
+					href="javascript:void(0)" class="easyui-linkbutton" plain="true"
+					onclick="">修改日志</a>
 			</div>
 		</div>
 	</div>

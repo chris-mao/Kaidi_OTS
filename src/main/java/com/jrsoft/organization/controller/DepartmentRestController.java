@@ -89,7 +89,7 @@ public class DepartmentRestController {
 		System.out.println("searchStr ==>> " + searchStr);
 		return departmentService.findChildNodes(parentId, pageIndex, pageSize, searchStr);
 	}
-	
+
 	/**
 	 * 返回所有有效的部门清单
 	 * 
@@ -100,9 +100,9 @@ public class DepartmentRestController {
 	public List<Department> jsonData() {
 		return this.departmentService.findAll(true);
 	}
-	
+
 	@GetMapping("/{id}/employees")
-	public List<Employee> findCustomersByEmployee(@PathVariable(name = "id") int departmentId) {
+	public List<Employee> findEmployeesByDept(@PathVariable(name = "id") int departmentId) {
 		Department dept = new Department();
 		dept.setDepartmentId(departmentId);
 		return this.employeeService.findAllByDepartment(dept);
@@ -119,7 +119,7 @@ public class DepartmentRestController {
 	public List<Department> departmentTree() {
 		return departmentService.getDepartmentTree();
 	}
-	
+
 	/**
 	 * 新增部门数据
 	 * 
@@ -132,9 +132,14 @@ public class DepartmentRestController {
 	public JsonResult<Department> insert(HttpServletRequest request) {
 		Department department = new Department();
 		department.setDepartmentName(request.getParameter("departmentName"));
-		department.setParentId(Integer.parseInt(request.getParameter("parentId")));
+		try {
+			department.setParentId(Integer.parseInt(request.getParameter("parentId")));
+		} catch (NumberFormatException e) {
+			 department.setParentId(0);
+		}
 		if (this.departmentService.findOne(department) != null) { // 部门名已存在
-			return new JsonResult<Department>(JsonResult.ERROR, "部门名【" + department.getDepartmentName() + "】已被使用，请使用其他部门名");
+			return new JsonResult<Department>(JsonResult.ERROR,
+					"部门名【" + department.getDepartmentName() + "】已被使用，请使用其他部门名");
 		}
 		if (true == this.departmentService.insert(department)) {
 			return new JsonResult<Department>();

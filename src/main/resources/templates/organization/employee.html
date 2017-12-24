@@ -21,16 +21,7 @@
 	<div class="easyui-layout" data-options="fit:true">
 		<div data-options="region:'west',split:false,collapsible:false"
 			title="组织架构" style="width: 200px;">
-			<ul class="easyui-tree" data-options="lines:true">
-				<li><span>苏州工厂</span>
-					<ul>
-						<li><span>客服部</span></li>
-						<li><span>质量部</span></li>
-					</ul></li>
-				<li><span>北京 Office</span></li>
-				<li><span>上海 Office</span></li>
-				<li><span>广州 Office</span></li>
-			</ul>
+			<ul id="departmentTree" class="easyui-tree"></ul>
 		</div>
 		<div data-options="region:'center'" title="员工列表">
 			<!-- 数据表格 -->
@@ -157,6 +148,25 @@
 					// 清空选中的行
 					$('#employeeDatagrid').datagrid('clearSelections');
 				}
+			});
+			
+			$("#departmentTree").tree({
+		        method:"get",
+		        url:"/departments/rest/tree",
+		        animate:true,
+		        lines:true,
+		        onLoadSuccess: function(node, data) {
+		            $("#departmentTree").tree("expandAll");
+		        },
+                onClick : function(node) {
+                    if (node) {
+                        console.log(node.id);
+                        $("#employeeDatagrid").datagrid({
+                            method : "get",
+                            url : "/departments/rest/" + node.id + "/employees"
+                        });
+                    }
+                }
 			});
 		});
 	</script>
