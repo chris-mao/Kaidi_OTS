@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * com.jrsoft.employee.controller EmployeeController
+ * <p>员工控制器类，提供员工维护页面入口</p>
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
@@ -28,7 +28,7 @@ public class EmployeeController {
 	@GetMapping({ "", "/index" })
 	@RequiresPermissions("employee:list")
 	public String index() {
-		return "employee/index";
+		return "organization/employee";
 	}
 
 }
