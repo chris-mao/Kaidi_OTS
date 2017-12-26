@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/wos/rest")
+@RequestMapping("/wos/api")
 public class WorkOrderRestController {
 
 }

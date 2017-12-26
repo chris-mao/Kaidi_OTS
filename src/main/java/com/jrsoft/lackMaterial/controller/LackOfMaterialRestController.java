@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/loms/rest")
+@RequestMapping("/loms/api")
 public class LackOfMaterialRestController {
 
 }

@@ -31,11 +31,11 @@
 					<tr>
 						<th data-options="field:'ck',checkbox:true"></th>
 						<th field="employeeId" style="width: 40px">编号</th>
+						<th field="employeeNumber" style="width: 80px">员工工号</th>
 						<th field="employeeName" style="width: 120px">员工名称</th>
 						<th field="phone" style="width: 160px" align="center">联系电话</th>
 						<th field="fax" style="width: 160px" align="center">传真号码</th>
 						<th field="email" style="width: 240px">电子邮件</th>
-						<th field="oracleAccount" style="width: 100px" align="center">Oracle帐号</th>
 						<th field="reportTo" style="width: 60px">上级领导</th>
 						<th field="available" style="width: 60px" align="center"
 							formatter="availableFormatter">启用</th>
@@ -63,9 +63,7 @@
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true" onclick="deleteEmployee()">删除</a>
 		</shiro:hasPermission>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-add" plain="true" title="查看名下客户清单">分配客户</a> <input
-			id="employeeSearch" prompt="请输入员工姓名" class="easyui-searchbox" />
+		<input id="employeeSearch" prompt="请输入员工姓名" class="easyui-searchbox" />
 	</div>
 
 	<!-- 新增、编辑窗体 -->
@@ -113,62 +111,6 @@
 			onclick="javascript:$('#employeeEditDlg').dialog('close')">取消</a>
 	</div>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			// 初始化用户表格
-			$("#employeeDatagrid").datagrid({
-				method : "get",
-				url : "/employees/rest/list",
-				idField : "employeeId",
-				checkOnSelect : false,
-				selectOnCheck : false,
-				singleSelect : true,
-				rownumbers : true,
-				striped : true,
-				fit : true,
-				pagination : true,
-				pagePosition : "bottom",
-				pageSize : 20,
-				pageList : [ 10, 20, 30, 50, 80 ],
-				onDblClickRow : function(index, row) {
-					editUser();
-				}
-			});
-
-			// 绑定快速查询
-			$("#employeeSearch").searchbox({
-				searcher : function(value, name) {
-					if ($.trim(value).length > 0) {
-						$("#employeeDatagrid").datagrid("load", {
-							searchValue : value
-						});
-					} else {
-						$("#employeeDatagrid").datagrid("load", {});
-					}
-					// 清空选中的行
-					$('#employeeDatagrid').datagrid('clearSelections');
-				}
-			});
-			
-			$("#departmentTree").tree({
-		        method:"get",
-		        url:"/departments/rest/tree",
-		        animate:true,
-		        lines:true,
-		        onLoadSuccess: function(node, data) {
-		            $("#departmentTree").tree("expandAll");
-		        },
-                onClick : function(node) {
-                    if (node) {
-                        console.log(node.id);
-                        $("#employeeDatagrid").datagrid({
-                            method : "get",
-                            url : "/departments/rest/" + node.id + "/employees"
-                        });
-                    }
-                }
-			});
-		});
-	</script>
+	<script th:src="@{/js/employee.js}" type="text/javascript"></script>
 </body>
 </html>
