@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import com.github.pagehelper.PageHelper;
 
 /**
- * com.jrsoft.config.mybatis PageHelperConfiguration
+ * Mybatis配置类
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

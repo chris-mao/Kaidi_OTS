@@ -28,5 +28,15 @@ spring:
     check-template: false
     content-type: text/html
     encoding: UTF-8
+#邮箱配置
+  mail:
+    protocol: smtp
+    host: smtp.263.net
+    port: 25
+    properties:
+      mail.smtp.auth: true
+    username: order@zjkaideli.com
+    password: kd366216
+    default-encoding: UTF-8
 #分页配置
 pageSize: 25
