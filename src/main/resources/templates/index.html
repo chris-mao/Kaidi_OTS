@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-<title>用户认证系统</title>
+<title>凯迪订单跟踪系统</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link th:href="@{css/main.css}" rel="stylesheet"></link>
@@ -23,8 +23,8 @@
 
 <body class="easyui-layout" fit="true" style="text-align: left">
 	<div data-options="region:'north',border:false" class="top-panel">
-		<div class="emerson">&nbsp;</div>
-		<div class="banner">凯迪订单跟踪系统</div>
+		<div class="kaidi">&nbsp;</div>
+		<div class="banner">订单跟踪系统</div>
 		<div class="right-button-panel">
 			<input type="hidden" id="userId" th:value="${currentUser.userId}" />
 			<input type="hidden" id="userName" th:value="${currentUser.userName}" />
@@ -52,7 +52,7 @@
 			</select>
 		</div>
 	</div>
-	<div data-options="region:'west',split:true,title:'菜单'"
+	<div data-options="region:'west',split:true,collapsible:false,title:'菜单'"
 		style="width: 180px; min-width: 180px;">
 		<div>
 			<ul id="menuTree" class="easyui-tree"></ul>
@@ -102,7 +102,7 @@
 		$(document).ready(function() {
 			$("#menuTree").tree({
 				method : "get",
-				url : "users/rest/" + $("#userId").val() + "/menu",
+				url : "users/api/" + $("#userId").val() + "/menu",
 				animate : true,
 				lines : true,
 				onLoadSuccess : function(node, data) {
@@ -120,7 +120,7 @@
 
 			$("#menuCombobox").combotree({
 				method : "get",
-				url : "users/rest/" + $("#userId").val() + "/menu",
+				url : "users/api/" + $("#userId").val() + "/menu",
 				textField : "text",
 				animate : true,
 				lines : true,

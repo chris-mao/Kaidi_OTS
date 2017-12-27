@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.common.JsonResult;
-import com.jrsoft.customer.entity.Customer;
 import com.jrsoft.organization.entity.Employee;
 import com.jrsoft.organization.service.EmployeeService;
 
@@ -27,19 +26,17 @@ import com.jrsoft.organization.service.EmployeeService;
  * <p>
  * 员工控制器类，提供员工数据的维护方法接口
  * <dl>
- * <dt>GET: employees/rest/list?page=1&rows=20&searchValue=</dt>
+ * <dt>GET: employees/api/list?page=1&rows=20&searchValue=</dt>
  * <dd>按页码返回（符合查询条件或是全部）员工数据列表，需要拥有<code>employee:list</code>权限</dd>
- * <dt>GET: employees/rest/json</dt>
+ * <dt>GET: employees/api/json</dt>
  * <dd>返回全部有效的（available=1）员工数据列表，需要拥有<code>employee:list</code>权限</dd>
- * <dt>GET: employees/rest/{id}/customers</dt>
- * <dd>获取员工权限菜单，需要拥有<code>customer:list</code>权限</dd>
- * <dt>POST: employees/rest/new</dt>
+ * <dt>POST: employees/api/new</dt>
  * <dd>新建员工数据，需要拥有<code>employee:new</code>权限</dd>
- * <dt>GET: employees/rest/{id}</dt>
+ * <dt>GET: employees/api/{id}</dt>
  * <dd>获取员工数据，需要拥有<code>employee:list</code>权限</dd>
- * <dt>POST: employees/rest/{id}</dt>
+ * <dt>POST: employees/api/{id}</dt>
  * <dd>更新员工数据，需要拥有<code>employee:edit</code>权限</dd>
- * <dt>DELETE: employees/rest/{id}</dt>
+ * <dt>DELETE: employees/api/{id}</dt>
  * <dd>删除员工数据，需要拥有<code>employee:delete</code>权限</dd>
  * </dl>
  * </p>
@@ -50,7 +47,7 @@ import com.jrsoft.organization.service.EmployeeService;
  *
  */
 @RestController
-@RequestMapping("/employees/rest")
+@RequestMapping("/employees/api")
 public class EmployeeRestController {
 
 	/**
@@ -88,11 +85,6 @@ public class EmployeeRestController {
 	@RequiresPermissions("employee:list")
 	public List<Employee> jsonData() {
 		return this.employeeService.findAll(true);
-	}
-	
-	@GetMapping("/{id}/customers")
-	public List<Customer> findCustomersByEmployee(@PathVariable(name = "id") int employeeId) {
-		return null;
 	}
 	
 	/**
