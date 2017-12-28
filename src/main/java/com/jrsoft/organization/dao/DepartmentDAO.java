@@ -18,7 +18,7 @@ import com.jrsoft.organization.dao.sqlprovider.DepartmentDynaSqlProvider;
 import com.jrsoft.organization.entity.Department;
 
 /**
- * 部门数据访问类
+ * 部门数据访问接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

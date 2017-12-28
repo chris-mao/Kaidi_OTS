@@ -19,7 +19,7 @@ import com.jrsoft.auth.dao.sqlprovider.AuthRoleDynaSqlProvider;
 import com.jrsoft.auth.entity.AuthRole;
 
 /**
- * 系统角色数据访问类
+ * 系统角色数据访问接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

@@ -40,7 +40,7 @@ public interface EmailService {
 	 * @param attachments
 	 *            附件列表
 	 */
-	public void sendAttachmentsMail(String sendTo, String titel, String content, Map<String, File> attachments);
+	public void sendAttachmentsMail(String sendTo, String titel, String content, String[] attachments);
 
 	/**
 	 * 发送模板邮件
@@ -57,6 +57,6 @@ public interface EmailService {
 	 *            附件列表
 	 */
 	public void sendTemplateMail(String sendTo, String titel, Map<String, Object> content, String templateName,
-			Map<String, File> attachments);
+			String[] attachments);
 
 }

@@ -11,7 +11,7 @@ import com.jrsoft.auth.entity.AuthUser;
 import com.jrsoft.common.EasyDataGrid;
 
 /**
- * 系统权限服务接口
+ * 系统权限业务接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

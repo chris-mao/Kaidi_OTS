@@ -17,5 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/wos/api")
 public class WorkOrderRestController {
+	
+//	@Autowired
+//	private WorkOrderService workOrderService;
 
 }

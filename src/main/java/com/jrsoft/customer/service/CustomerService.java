@@ -11,7 +11,7 @@ import com.jrsoft.customer.entity.Customer;
 import com.jrsoft.organization.entity.Employee;
 
 /**
- * 客户服务接口
+ * 客户业务接口
  * 
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

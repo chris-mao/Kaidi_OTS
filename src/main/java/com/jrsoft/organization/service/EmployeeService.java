@@ -7,7 +7,7 @@ import com.jrsoft.organization.entity.Department;
 import com.jrsoft.organization.entity.Employee;
 
 /**
- * 员工服务接口
+ * 员工业务接口
  * 
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

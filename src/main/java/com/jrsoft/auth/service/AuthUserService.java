@@ -11,7 +11,7 @@ import com.jrsoft.auth.entity.AuthUser;
 import com.jrsoft.auth.entity.AuthUserRoleReleation;
 
 /**
- * 系统用户服务接口
+ * 系统用户业务接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

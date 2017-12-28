@@ -10,7 +10,7 @@ import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.organization.entity.Department;
 
 /**
- * com.jrsoft.employee.service DepartmentService
+ * 部门业务接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

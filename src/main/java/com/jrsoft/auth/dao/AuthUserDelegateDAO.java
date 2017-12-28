@@ -17,7 +17,7 @@ import org.apache.ibatis.mapping.FetchType;
 import com.jrsoft.auth.entity.AuthUserDelegate;
 
 /**
- * 身份代理数据访问类
+ * 身份代理数据访问接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

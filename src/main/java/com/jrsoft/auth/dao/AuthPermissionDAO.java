@@ -21,7 +21,7 @@ import com.jrsoft.auth.dao.sqlprovider.AuthPermissionDynaSqlProvider;
 import com.jrsoft.auth.entity.AuthPermission;
 
 /**
- * 系统权限数据访问类
+ * 系统权限数据访问接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

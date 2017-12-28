@@ -23,7 +23,7 @@ import com.jrsoft.auth.entity.AuthUserRoleReleation;
 
 /**
  * 
- * 系统用户数据访问类
+ * 系统用户数据访问接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

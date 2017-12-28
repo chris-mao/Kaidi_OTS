@@ -16,7 +16,7 @@ import com.jrsoft.auth.dao.sqlprovider.AuthUserDynaSqlProvider;
 import com.jrsoft.customer.entity.Customer;
 
 /**
- * com.jrsoft.customer.dao CustomerDAO
+ * 客户数据访问接口
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

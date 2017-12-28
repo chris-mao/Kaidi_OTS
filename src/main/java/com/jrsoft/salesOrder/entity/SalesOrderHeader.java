@@ -1,19 +1,19 @@
 /**
  * 
  */
-package com.jrsoft.workOrder.entity;
+package com.jrsoft.salesOrder.entity;
 
 import java.io.Serializable;
 
 /**
- * 生产工单实体类
+ * 销售订单头实体类
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
  * @version 1.0
  *
  */
-public class WorkOrder implements Serializable {
+public class SalesOrderHeader implements Serializable {
 
 	/**
 	 * 
