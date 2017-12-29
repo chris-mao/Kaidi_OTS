@@ -8,6 +8,7 @@ import java.util.Date;
 
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -40,6 +41,7 @@ public class WorkOrder implements Serializable {
 	 * 生产工单号
 	 */
 	@NotEmpty(message = "生产工单号不允许为空")
+	@Length(min = 1, max = 11, message = "工单号长度不能少于11位")
 	private String woNumber;
 
 	/**
@@ -61,11 +63,13 @@ public class WorkOrder implements Serializable {
 	/**
 	 * 预估完工日期
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date etf;
 
 	/**
 	 * 实际完工日期
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date atf;
 
 	/**

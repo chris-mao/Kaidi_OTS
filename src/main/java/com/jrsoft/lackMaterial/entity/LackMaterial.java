@@ -41,6 +41,7 @@ public class LackMaterial implements Serializable {
 	 * 缺料单号
 	 */
 	@NotEmpty(message = "缺料单号不允许为空")
+	@Length(min = 1, max = 11, message = "缺料单号长度不能少于11位")
 	private String lackNumber;
 
 	/**
@@ -74,16 +75,19 @@ public class LackMaterial implements Serializable {
 	/**
 	 * 要求交期
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date rtd;
 
 	/**
 	 * 预估到达日期
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date eta;
 
 	/**
 	 * 实际到达日期
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ata;
 
 	/**
