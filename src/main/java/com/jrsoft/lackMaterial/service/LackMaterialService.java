@@ -4,8 +4,10 @@
 package com.jrsoft.lackMaterial.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jrsoft.app.service.AbstractDbService;
+import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.lackMaterial.entity.LackMaterial;
 
 /**
@@ -17,6 +19,20 @@ import com.jrsoft.lackMaterial.entity.LackMaterial;
  *
  */
 public interface LackMaterialService extends AbstractDbService<LackMaterial> {
+	
+	/**
+	 * 按给定的查询条件查询缺料单
+	 * 
+	 * @since 1.0
+	 * @param pageIndex
+	 *            页码
+	 * @param pageSize
+	 *            分页大小
+	 * @param params
+	 *            查询条件键值对
+	 * @return
+	 */
+	public EasyDataGrid<LackMaterial> findAll(int pageIndex, int pageSize, Map<String, String> params);
 
 	/**
 	 * 获取销售订单行对应的缺料单
@@ -49,7 +65,7 @@ public interface LackMaterialService extends AbstractDbService<LackMaterial> {
 	public boolean cancelWorkOrder(List<Integer> lackIds);
 
 	/**
-	 * 更新缺料单的预估到达日期
+	 * 更新缺料单的预估到达日期和采购单号
 	 * 
 	 * @since 1.0
 	 * @param lackIds
@@ -60,7 +76,7 @@ public interface LackMaterialService extends AbstractDbService<LackMaterial> {
 	 *            预估到达日期
 	 * @return
 	 */
-	public boolean updateETF(List<Integer> lackIds, String purchaseNumber, String eta);
+	public boolean updateETA(List<Integer> lackIds, String purchaseNumber, String eta);
 
 	/**
 	 * 更新缺料单的预估到达日期
@@ -72,7 +88,7 @@ public interface LackMaterialService extends AbstractDbService<LackMaterial> {
 	 *            预估到达日期
 	 * @return
 	 */
-	public boolean updateETF(List<Integer> lackIds, String eta);
+	public boolean updateETA(List<Integer> lackIds, String eta);
 
 	/**
 	 * 更新缺料单的实际到达日期
@@ -84,6 +100,6 @@ public interface LackMaterialService extends AbstractDbService<LackMaterial> {
 	 *            实际到达日期
 	 * @return
 	 */
-	public boolean updateATF(List<Integer> lackIds, String ata);
+	public boolean updateATA(List<Integer> lackIds, String ata);
 
 }

@@ -3,7 +3,6 @@
  */
 package com.jrsoft.email;
 
-import java.io.File;
 import java.util.Map;
 
 /**

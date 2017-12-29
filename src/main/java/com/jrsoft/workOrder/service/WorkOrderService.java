@@ -4,8 +4,10 @@
 package com.jrsoft.workOrder.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jrsoft.app.service.AbstractDbService;
+import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.workOrder.entity.WorkOrder;
 
 /**
@@ -17,6 +19,20 @@ import com.jrsoft.workOrder.entity.WorkOrder;
  *
  */
 public interface WorkOrderService extends AbstractDbService<WorkOrder> {
+	
+	/**
+	 * 按给定的查询条件查询生产工单
+	 * 
+	 * @since 1.0
+	 * @param pageIndex
+	 *            页码
+	 * @param pageSize
+	 *            分页大小
+	 * @param params
+	 *            查询条件键值对
+	 * @return
+	 */
+	public EasyDataGrid<WorkOrder> findAll(int pageIndex, int pageSize, Map<String, String> params);
 
 	/**
 	 * 获取销售订单行对应的生产工单
@@ -71,5 +87,5 @@ public interface WorkOrderService extends AbstractDbService<WorkOrder> {
 	 * @return
 	 */
 	public boolean updateATF(List<Integer> workOrderIds, String atf);
-	
+
 }

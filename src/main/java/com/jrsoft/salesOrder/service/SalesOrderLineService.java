@@ -63,7 +63,7 @@ public interface SalesOrderLineService extends AbstractDbService<SalesOrderLine>
 	 *            订单行状态 {@link SalesOrderLineStateEnum}
 	 * @return
 	 */
-	public boolean updateLineState(int salesOrderId, List<Integer> lineIndexs, SalesOrderLineStateEnum state);
+	public boolean updateLinesState(int salesOrderId, List<Integer> lineIndexs, SalesOrderLineStateEnum state);
 
 	/**
 	 * 更新订单行预估交期
