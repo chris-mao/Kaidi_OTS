@@ -103,9 +103,7 @@ public class DepartmentRestController {
 
 	@GetMapping("/{id}/employees")
 	public List<Employee> findEmployeesByDept(@PathVariable(name = "id") int departmentId) {
-		Department dept = new Department();
-		dept.setDepartmentId(departmentId);
-		return this.employeeService.findAllByDepartment(dept);
+		return this.employeeService.findAllByDepartment(departmentId);
 	}
 
 	/**

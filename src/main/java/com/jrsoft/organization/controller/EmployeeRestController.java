@@ -98,17 +98,13 @@ public class EmployeeRestController {
 	@RequiresPermissions("employee:new")
 	public JsonResult<Employee> insert(HttpServletRequest request) {
 		Employee employee = new Employee();
+		employee.setEmployeeNum(request.getParameter("employeeNum"));
 		employee.setEmployeeName(request.getParameter("employeeName"));
 		employee.setPhone(request.getParameter("phone"));
-		employee.setFax(request.getParameter("fax"));
 		employee.setEmail(request.getParameter("email"));
-		employee.setOracleAccount(request.getParameter("oracleAccount"));
-		employee.setReportTo(Integer.parseInt(request.getParameter("reportTo")));
-//		employee.setUserName(request.getParameter("userName"));
-//		employee.setNickName(request.getParameter("nickName"));
-		employee.setEmail(request.getParameter("email"));
+		employee.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 		if (this.employeeService.findOne(employee) != null) { // 员工名已存在
-			return new JsonResult<Employee>(JsonResult.ERROR, "员工名【" + employee.getEmployeeName() + "】已被使用，请使用其他员工名");
+			return new JsonResult<Employee>(JsonResult.ERROR, "员工工号【" + employee.getEmployeeNum() + "】已被使用，请使用其他员工号");
 		}
 		if (true == this.employeeService.insert(employee)) {
 			return new JsonResult<Employee>();
@@ -145,9 +141,11 @@ public class EmployeeRestController {
 	public JsonResult<Employee> update(@PathVariable("id") int employeeId, HttpServletRequest request) {
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeId);
-//		employee.setUserName(request.getParameter("userName"));
-//		employee.setNickName(request.getParameter("nickName"));
+		employee.setEmployeeNum(request.getParameter("employeeNum"));
+		employee.setEmployeeName(request.getParameter("employeeName"));
+		employee.setPhone(request.getParameter("phone"));
 		employee.setEmail(request.getParameter("email"));
+		employee.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
 		employee.setAvailable("on".equals(request.getParameter("available")));
 
 		if (true == this.employeeService.update(employee)) {

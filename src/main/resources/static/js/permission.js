@@ -80,7 +80,7 @@ function savePermission() {
 			console.log(textStatus);
 			var data = eval('(' + data + ')'); //将字符串转为JSON对象
 			if (data.state == 0) {
-				$.messager.alert("消息", "数据保存成功！", "info");
+//				$.messager.alert("消息", "数据保存成功！", "info");
 				$("#permissionEditDlg").dialog("close"); // close the dialog
 				$("#permissionTreegrid").treegrid("reload"); // reload the permission data
 			} else {

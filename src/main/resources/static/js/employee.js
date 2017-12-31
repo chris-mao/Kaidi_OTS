@@ -6,12 +6,12 @@ $(document).ready(function() {
         animate:true,
         lines:true,
         onLoadSuccess: function(node, data) {
-            $("#departmentTree").tree("expandAll");
+        	
         },
         onClick : function(node) {
             if (node) {
                 console.log(node.id);
-                $("#employeeDatagrid").datagrid({
+                $("#employeeDataGrid").datagrid({
                     method : "get",
                     url : "/departments/api/" + node.id + "/employees"
                 });
@@ -20,7 +20,7 @@ $(document).ready(function() {
 	});
 	
 	//初始化员工数据表格
-	$("#employeeDatagrid").datagrid({
+	$("#employeeDataGrid").datagrid({
 		method : "get",
 		url : "/employees/api/list",
 		idField : "employeeId",
@@ -43,14 +43,14 @@ $(document).ready(function() {
 	$("#employeeSearch").searchbox({
 		searcher : function(value, name) {
 			if ($.trim(value).length > 0) {
-				$("#employeeDatagrid").datagrid("load", {
+				$("#employeeDataGrid").datagrid("load", {
 					searchValue : value
 				});
 			} else {
-				$("#employeeDatagrid").datagrid("load", {});
+				$("#employeeDataGrid").datagrid("load", {});
 			}
 			// 清空选中的行
-			$('#employeeDatagrid').datagrid('clearSelections');
+			$('#employeeDataGrid').datagrid('clearSelections');
 		}
 	});
 });
@@ -64,9 +64,9 @@ function newEmployee() {
 	$("#employeeEditDlg").dialog("open").dialog("center").dialog("setTitle",
 			"创建新员工");
 	$("#employeeEditForm").form("clear");
-	var row = $("#employeeTreegrid").treegrid("getSelected");
-	if (row) {
-		$("#employeeEditForm").form("load", {"parentId":row.employeeId});
+	var departmentNode = $("#departmentTree").tree("getSelected");
+	if (departmentNode) {
+		$("#employeeEditForm").form("load", {"departmentId":departmentNode.id});
 	}
 	var switchbuttonObj = $(".easyui-switchbutton[switchbuttonName='available']");
 	switchbuttonObj.switchbutton("check");
@@ -74,7 +74,7 @@ function newEmployee() {
 
 // 打开编加员工对话框
 function editEmployee() {
-	var row = $("#employeeTreegrid").treegrid("getSelected");
+	var row = $("#employeeDataGrid").datagrid("getSelected");
 	if (row) {
 		console.log(row);
 		post_url = "/employees/api/" + row.employeeId;
@@ -99,13 +99,13 @@ function saveEmployee() {
 			return $(this).form("validate");
 		},
 		success : function(data, textStatus) {
-			console.log(data);
-			console.log(textStatus);
+//			console.log(data);
+//			console.log(textStatus);
 			var data = eval('(' + data + ')'); //将字符串转为JSON对象
 			if (data.state == 0) {
-				$.messager.alert("消息", "数据保存成功！", "info");
+//				$.messager.alert("消息", "数据保存成功！", "info");
 				$("#employeeEditDlg").dialog("close"); // close the dialog
-				$("#employeeTreegrid").treegrid("reload"); // reload the employee data
+				$("#employeeDataGrid").datagrid("reload"); // reload the employee data
 			} else {
 				$.messager.alert("错误", data.message, "error");
 			}
@@ -119,9 +119,9 @@ function saveEmployee() {
 
 // 删除员工
 function deleteEmployee() {
-	var row = $("#employeeTreegrid").treegrid("getSelected");
+	var row = $("#employeeDataGrid").treegrid("getSelected");
 	if (row) {
-		$.messager.confirm("确认", "删除员工【" + row.employeeName + "】？", function(r) {
+		$.messager.confirm("确认", "删除员工【" + row.employeeNum + " - " + row.employeeName + "】？", function(r) {
 			if (r) {
 				$.ajax({
 					url : "/employees/api/" + row.employeeId,
@@ -130,9 +130,9 @@ function deleteEmployee() {
 						console.log(data);
 						console.log(textStatus);
 						if (data.state == 0) {
-							$("#employeeTreegrid").treegrid("reload");
+							$("#employeeDataGrid").datagrid("reload");
 							// 清空选中的行
-							$('#employeeTreegrid').treegrid('clearSelections');
+							$('#employeeDataGrid').datagrid('clearSelections');
 						} else {
 							$.messager.alert("错误", data.message, "error");
 						}

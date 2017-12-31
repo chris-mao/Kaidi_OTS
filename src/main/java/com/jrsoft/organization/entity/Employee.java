@@ -26,25 +26,22 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
-	 */
-	public static final String SALES_PERSON = "";
-
-	/**
-	 * 
-	 */
-	public static final String CSR = "";
-
-	/**
 	 * 员工编号
 	 */
 	private int employeeId;
 
 	/**
+	 * 员工工号
+	 */
+	@NotEmpty(message = "员工工号不能为空")
+	@Length(min = 3, max = 12, message = "员工工号长度需在3位到12位之间")
+	private String employeeNum;
+
+	/**
 	 * 员工姓名
 	 */
 	@NotEmpty(message = "员工姓名不能为空")
-	@Length(min = 3, max = 64, message = "员工姓名长度需在3位到64位之间")
+	@Length(min = 2, max = 32, message = "员工姓名长度需在3位到32位之间")
 	private String employeeName;
 
 	/**
@@ -56,32 +53,9 @@ public class Employee implements Serializable {
 	/**
 	 * 电话号码
 	 */
-	@Length(min = 8, max = 32, message = "电话号码长度需要8位到32位之间")
+	@Length(min = 6, max = 32, message = "电话号码长度需要6位到32位之间")
 	private String phone;
-	
-	
-	/**
-	 * 传真号码
-	 */
-	@Length(min = 8, max = 32, message = "传真号码长度需要8位到32位之间")
-	private String fax;
 
-	/**
-	 * 员工类型
-	 */
-	private String employeeType;
-
-	/**
-	 * oracle帐号
-	 */
-	@Length(min = 4, max = 32, message = "Oracle帐号长度需要4位到32位之间")
-	private String oracleAccount;
-
-	/**
-	 * 汇报主管、经理
-	 */
-	private int reportTo;
-	
 	/**
 	 * 部门编号
 	 */
@@ -89,9 +63,9 @@ public class Employee implements Serializable {
 	private int departmentId;
 
 	/**
-	 * 员工对应的系统用户编号
+	 * 部门名称
 	 */
-	private int userId;
+	private String departmentName;
 
 	/**
 	 * 是否有效
@@ -110,188 +84,93 @@ public class Employee implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 
-	/**
-	 * @return the employeeId
-	 */
 	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	/**
-	 * @param employeeId the employeeId to set
-	 */
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
-	/**
-	 * @return the employeeName
-	 */
+	public String getEmployeeNum() {
+		return employeeNum;
+	}
+
+	public void setEmployeeNum(String employeeNum) {
+		this.employeeNum = employeeNum;
+	}
+
 	public String getEmployeeName() {
 		return employeeName;
 	}
 
-	/**
-	 * @param employeeName the employeeName to set
-	 */
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
 
-	/**
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
 
-	/**
-	 * @param email the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	/**
-	 * @return the phone
-	 */
 	public String getPhone() {
 		return phone;
 	}
 
-	/**
-	 * @param phone the phone to set
-	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	/**
-	 * @return the employeeType
-	 */
-	public String getEmployeeType() {
-		return employeeType;
+	public int getDepartmentId() {
+		return departmentId;
 	}
 
-	/**
-	 * @param employeeType the employeeType to set
-	 */
-	public void setEmployeeType(String employeeType) {
-		this.employeeType = employeeType;
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 
-	/**
-	 * @return the oracleAccount
-	 */
-	public String getOracleAccount() {
-		return oracleAccount;
-	}
-
-	/**
-	 * @param oracleAccount the oracleAccount to set
-	 */
-	public void setOracleAccount(String oracleAccount) {
-		this.oracleAccount = oracleAccount;
-	}
-
-	/**
-	 * @return the reportTo
-	 */
-	public int getReportTo() {
-		return reportTo;
-	}
-
-	/**
-	 * @param reportTo the reportTo to set
-	 */
-	public void setReportTo(int reportTo) {
-		this.reportTo = reportTo;
-	}
-
-	/**
-	 * @return the userId
-	 */
-	public int getUserId() {
-		return userId;
-	}
-
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	/**
-	 * @return the available
-	 */
 	public boolean isAvailable() {
 		return available;
 	}
 
-	/**
-	 * @param available the available to set
-	 */
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
 
-	/**
-	 * @return the createdTime
-	 */
 	public Date getCreatedTime() {
 		return createdTime;
 	}
 
-	/**
-	 * @param createdTime the createdTime to set
-	 */
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
 
-	/**
-	 * @return the updateTime
-	 */
 	public Date getUpdateTime() {
 		return updateTime;
 	}
 
-	/**
-	 * @param updateTime the updateTime to set
-	 */
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
 
-	/**
-	 * @return the fax
-	 */
-	public String getFax() {
-		return fax;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	/**
-	 * @param fax the fax to set
-	 */
-	public void setFax(String fax) {
-		this.fax = fax;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", email=" + email + ", phone="
-				+ phone + ", fax=" + fax + ", employeeType=" + employeeType + ", oracleAccount=" + oracleAccount
-				+ ", reportTo=" + reportTo + ", userId=" + userId + ", available=" + available + ", createdTime="
-				+ createdTime + ", updateTime=" + updateTime + "]";
+		return "Employee [employeeId=" + employeeId + ", employeeNum=" + employeeNum + ", employeeName=" + employeeName
+				+ ", email=" + email + ", phone=" + phone + ", departmentId=" + departmentId + ", available="
+				+ available + ", createdTime=" + createdTime + ", updateTime=" + updateTime + "]";
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -301,9 +180,6 @@ public class Employee implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -315,12 +191,11 @@ public class Employee implements Serializable {
 		Employee other = (Employee) obj;
 		if (employeeId != other.employeeId)
 			return false;
-		if (employeeName == null) {
-			if (other.employeeName != null)
+		if (employeeNum == null) {
+			if (other.employeeNum != null)
 				return false;
-		} else if (!employeeName.equals(other.employeeName))
+		} else if (!employeeNum.equals(other.employeeNum))
 			return false;
 		return true;
 	}
-
 }

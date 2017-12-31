@@ -77,10 +77,9 @@ function saveDepartment() {
 		},
 		success : function(data, textStatus) {
 			console.log(data);
-			console.log(textStatus);
 			var data = eval('(' + data + ')'); //将字符串转为JSON对象
 			if (data.state == 0) {
-				$.messager.alert("消息", "数据保存成功！", "info");
+//				$.messager.alert("消息", "数据保存成功！", "info");
 				$("#departmentEditDlg").dialog("close"); // close the dialog
 				$("#departmentTreegrid").treegrid("reload"); // reload the department data
 			} else {

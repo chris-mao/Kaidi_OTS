@@ -23,12 +23,12 @@ public class EmployeeDynaSqlProvider {
 	 */
 	public String findAllSql(boolean onlyAvailable) {
 		return new SQL(){{
-			SELECT("employee_id, employee_name, email, fax, phone, user_id, report_to, available, created_time, update_time");
-			FROM("employee");
+			SELECT("employee_id, employee_num, employee_name, email, phone, department_id, department_name, available, created_time, update_time");
+			FROM("vw_employee");
 			if (onlyAvailable) {
 				WHERE("available = 1");
 			}
-			ORDER_BY("employee_name");
+			ORDER_BY("employee_num");
 		}}.toString();
 	}
 

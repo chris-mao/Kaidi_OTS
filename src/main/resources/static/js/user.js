@@ -102,7 +102,7 @@ function saveUser() {
 			console.log(textStatus);
 			var data = eval('(' + data + ')'); //将字符串转为JSON对象
 			if (data.state == 0) {
-				$.messager.alert("消息", "数据保存成功！", "info");
+//				$.messager.alert("消息", "数据保存成功！", "info");
 				$("#userEditDlg").dialog("close"); // close the dialog
 				$("#userDatagrid").datagrid("reload"); // reload the user data
 			} else {

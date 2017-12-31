@@ -15,6 +15,13 @@ import com.jrsoft.organization.entity.Employee;
  *
  */
 public interface EmployeeService extends AbstractDbService<Employee> {
-	
-	public List<Employee> findAllByDepartment(Department dept);
+
+	/**
+	 * 按部门查询员工列表
+	 * 
+	 * @param deptId
+	 *            部门编号
+	 * @return
+	 */
+	public List<Employee> findAllByDepartment(int deptId);
 }

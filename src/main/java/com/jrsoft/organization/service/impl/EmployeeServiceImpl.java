@@ -56,6 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			pageInfo = this.findAll(pageIndex, pageSize);
 		} else {
 			Employee emp = new Employee();
+			emp.setEmployeeNum("%" + searchStr + "%");
 			emp.setEmployeeName("%" + searchStr + "%");
 			PageHelper.startPage(pageIndex, pageSize);
 			pageInfo = new PageInfo<Employee>(employeeDAO.fuzzyQuery(emp));
@@ -68,14 +69,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> findAllByDepartment(Department dept) {
-		return null;
+	public List<Employee> findAllByDepartment(int deptId) {
+		if (deptId == 0) {
+			return null;
+		}
+		return this.employeeDAO.findAllByDepartment(deptId);
 	}
 
 	@Override
 	public Employee findOne(Employee employee) {
-		if (0 != employee.getUserId()) {
+		if (0 != employee.getEmployeeId()) {
 			return employeeDAO.findById(employee.getEmployeeId());
+		}
+		if (null != employee.getEmployeeNum()) {
+			return employeeDAO.findByNum(employee.getEmployeeNum());
 		}
 		if (null != employee.getEmployeeName()) {
 			return employeeDAO.findByName(employee.getEmployeeName());
@@ -85,17 +92,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean insert(Employee employee) {
-		return false;
+		return 1 == employeeDAO.insert(employee);
 	}
 
 	@Override
 	public boolean update(Employee employee) {
-		return false;
+		return 1 == employeeDAO.udpate(employee);
 	}
 
 	@Override
 	public boolean delete(int id) {
-		return false;
+		return 1 == employeeDAO.delete(id);
 	}
 
 }
