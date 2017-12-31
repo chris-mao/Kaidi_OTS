@@ -69,17 +69,29 @@
 			<!-- 订单主表 -->
 			<table id="salesOrderDatagrid" class="easyui-datagrid"
 				toolbar="#salesOrderDatagridToolbar">
+				<thead data-options="frozen:true">
+					<tr>
+						<th field="salesOrderNumber" style="width: 110px">订单号码</th>
+						<th field="nickName" style="width: 100px">订单类型</th>
+						<th field="state" style="width: 80px" align="center">状态</th>
+                        <th field="model" style="width: 160px" align="center">产品型号</th>
+						<th field="qty" style="width: 60px" align="right">数量</th>
+					</tr>
+				</thead>
 				<thead>
 					<tr>
-						<th field="salesOrderNumber" style="width: 120px">订单号码</th>
-						<th field="nickName" style="width: 160px">订单类型</th>
-						<th field="salesOrderName" style="width: 260px">客户名称</th>
+						<th field="rtd" style="width: 120px" align="center">要求交期</th>
+						<th field="etd" style="width: 120px" align="center">预计交期</th>
+						<th field="atd" style="width: 120px" align="center">实际交期</th>
+						<th field="customerName" style="width: 260px">客户名称</th>
+						<th field="customerName" style="width: 40px" align="center">国家</th>
+						<th field="customerName" style="width: 40px" align="center">城市</th>
 						<th field="billTo" style="width: 260px">发票地址</th>
 						<th field="shipTo" style="width: 260px">收货地址</th>
-						<th field="email" style="width: 60px">制单人</th>
-						<th field="createdTime" style="width: 140px"
-							formatter="dateTimeFormatter">制单时间</th>
-						<th field="updateTime" style="width: 140px"
+						<th field="createdByName" style="width: 60px">制单人</th>
+						<th field="createdTime" style="width: 140px" align="center"
+							formatter="dateTimeFormatter">创建时间</th>
+						<th field="updateTime" style="width: 140px" align="center"
 							formatter="dateTimeFormatter">更新时间</th>
 					</tr>
 				</thead>
@@ -88,23 +100,18 @@
 		<div data-options="region:'south',split:true,collapsible:false"
 			style="height: 50%; min-height: 220px;">
 			<div class="easyui-layout" data-options="fit:true">
-				<div data-options="region:'center'" title="订单明细">
-					<!-- 订单明细表格 -->
+				<div data-options="region:'west', split:true" title="缺料单" style="width: 50%;min-width:300xp;">
+					<!-- 缺料单表格 -->
 					<table id="customerDatagrid" class="easyui-datagrid"
-						toolbar="#orderLinesDatagridToolbar">
-						<thead data-options="frozen:true">
-							<tr>
-								<th field="workOrderNumber" style="width: 30px" align="center">行号</th>
-								<th field="model" style="width: 160px" align="center">产品型号</th>
-							</tr>
-						</thead>
+						toolbar="#so-lackMaterialDatagridToolbar">
 						<thead>
 							<tr>
-								<th field="qty" style="width: 60px" align="right">数量</th>
-								<th field="rtd" style="width: 120px" align="center">要求交期</th>
-								<th field="etd" style="width: 120px" align="center">预计交期</th>
-								<th field="atd" style="width: 120px" align="center">实际交期</th>
-								<th field="po_number" style="width: 80px" align="center">状态</th>
+								<th field="workOrderNumber" style="width: 120px" align="center">缺料单号</th>
+								<th field="model" style="width: 160px" align="center">原材料</th>
+								<th field="qty" style="width: 60px" align="right">缺少数量</th>
+								<th field="po_number" style="width: 120px" align="center">采购单号</th>
+								<th field="etd" style="width: 120px" align="center">预估到货日期</th>
+								<th field="atd" style="width: 120px" align="center">实际到货日期</th>
 								<th field="createdTime" style="width: 140px" align="center"
 									formatter="dateTimeFormatter">创建时间</th>
 								<th field="updateTime" style="width: 140px" align="center"
@@ -112,54 +119,28 @@
 							</tr>
 						</thead>
 					</table>
+
 				</div>
-				<div data-options="region:'east',split:true,collapsible:false"
-					style="width: 300px; min-width: 300px;">
-					<div class="easyui-layout" data-options="fit:true">
-						<div data-options="region:'north',split:true,collapsible:false"
-							style="height: 50%;" title="缺料单">
-							<!-- 缺料单表格 -->
-							<table id="customerDatagrid" class="easyui-datagrid"
-								toolbar="#so-lackMaterialDatagridToolbar">
-								<thead>
-									<tr>
-										<th field="workOrderNumber" style="width: 120px"
-											align="center">缺料单号</th>
-										<th field="model" style="width: 160px" align="center">原材料</th>
-										<th field="qty" style="width: 60px" align="right">缺少数量</th>
-										<th field="po_number" style="width: 120px" align="center">采购单号</th>
-										<th field="etd" style="width: 120px" align="center">预估到货日期</th>
-										<th field="atd" style="width: 120px" align="center">实际到货日期</th>
-										<th field="createdTime" style="width: 140px" align="center"
-											formatter="dateTimeFormatter">创建时间</th>
-										<th field="updateTime" style="width: 140px" align="center"
-											formatter="dateTimeFormatter">更新时间</th>
-									</tr>
-								</thead>
-							</table>
-						</div>
-						<div data-options="region:'center'" title="工产工单">
-							<!-- 工单表格 -->
-							<table id="workOrderDatagrid" class="easyui-datagrid"
-								toolbar="#so-workOrderDatagridToolbar">
-								<thead>
-									<tr>
-										<th field="workOrderNumber" style="width: 120px"
-											align="center">工单号码</th>
-										<th field="model" style="width: 160px" align="center">产品型号</th>
-										<th field="qty" style="width: 60px" align="right">生产数量</th>
-										<th field="workshop" style="width: 160px" align="center">生产车间</th>
-										<th field="etd" style="width: 120px" align="center">预估完工日期</th>
-										<th field="atd" style="width: 120px" align="center">实际完工日期</th>
-										<th field="createdTime" style="width: 140px" align="center"
-											formatter="dateTimeFormatter">创建时间</th>
-										<th field="updateTime" style="width: 140px" align="center"
-											formatter="dateTimeFormatter">更新时间</th>
-									</tr>
-								</thead>
-							</table>
-						</div>
-					</div>
+				<div data-options="region:'center'"
+					style="width: 50%; min-width: 300px;" title="工产工单">
+					<!-- 工单表格 -->
+					<table id="workOrderDatagrid" class="easyui-datagrid"
+						toolbar="#so-workOrderDatagridToolbar">
+						<thead>
+							<tr>
+								<th field="workOrderNumber" style="width: 120px" align="center">工单号码</th>
+								<th field="model" style="width: 160px" align="center">产品型号</th>
+								<th field="qty" style="width: 60px" align="right">生产数量</th>
+								<th field="workshop" style="width: 160px" align="center">生产车间</th>
+								<th field="etd" style="width: 120px" align="center">预估完工日期</th>
+								<th field="atd" style="width: 120px" align="center">实际完工日期</th>
+								<th field="createdTime" style="width: 140px" align="center"
+									formatter="dateTimeFormatter">创建时间</th>
+								<th field="updateTime" style="width: 140px" align="center"
+									formatter="dateTimeFormatter">更新时间</th>
+							</tr>
+						</thead>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -172,21 +153,15 @@
 			href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-edit" plain="true" onclick="">取消</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-remove" plain="true" onclick="">删除</a>
-	</div>
-
-	<!-- 销售订单行表格工具栏 -->
-	<div id="orderLinesDatagridToolbar" class="datagrid-toolbar">
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-edit" plain="true" onclick="">修改</a> <a
+			iconCls="icon-remove" plain="true" onclick="">删除</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-edit" plain="true" onclick="">预估交期</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-edit" plain="true" onclick="">财务放行</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-edit" plain="true" onclick="">发货</a> <a
+			iconCls="icon-edit" plain="true" onclick="">品质放行</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-remove" plain="true" onclick="">删除</a> <a
+			iconCls="icon-edit" plain="true" onclick="">发货</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton" plain="true"
 			onclick="">修改日志</a> <a href="javascript:void(0)"
 			class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="">创建缺料单</a>

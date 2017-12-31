@@ -5,7 +5,7 @@ package com.jrsoft.salesOrder.service;
 
 import java.util.List;
 
-import com.jrsoft.salesOrder.entity.SalesOrderLineChangeDetail;
+import com.jrsoft.salesOrder.entity.SalesOrderChangeDetail;
 
 /**
  * 销售订单行变更业务接口
@@ -23,8 +23,8 @@ public interface DataChangeService {
 	 * @since 1.0
 	 * @param lineId
 	 *            销售订单行编号
-	 * @return List<{@link SalesOrderLineChangeDetail}>
+	 * @return List<{@link SalesOrderChangeDetail}>
 	 */
-	public List<SalesOrderLineChangeDetail> findAllChanges(int lineId);
+	public List<SalesOrderChangeDetail> findAllChanges(int lineId);
 
 }

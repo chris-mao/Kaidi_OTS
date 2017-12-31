@@ -43,6 +43,7 @@ body {
 
 .form-signin .form-signin-heading, .form-signin .forgot {
 	margin-bottom: 10px;
+	min-height: 20px;
 }
 
 .form-signin .forgot {

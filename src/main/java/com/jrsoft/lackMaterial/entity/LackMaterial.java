@@ -28,9 +28,9 @@ public class LackMaterial implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 销售订单行编号
+	 * 销售订单编号
 	 */
-	private int salesOrderLineId;
+	private int salesOrderId;
 
 	/**
 	 * 缺料单编号
@@ -117,12 +117,12 @@ public class LackMaterial implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 
-	public int getSalesOrderLineId() {
-		return salesOrderLineId;
+	public int getSalesOrderId() {
+		return salesOrderId;
 	}
 
-	public void setSalesOrderLineId(int salesOrderLineId) {
-		this.salesOrderLineId = salesOrderLineId;
+	public void setSalesOrderId(int salesOrderId) {
+		this.salesOrderId = salesOrderId;
 	}
 
 	public int getId() {
@@ -247,7 +247,7 @@ public class LackMaterial implements Serializable {
 
 	@Override
 	public String toString() {
-		return "LackMaterial [salesOrderLineId=" + salesOrderLineId + ", lackId=" + id + ", lackNumber="
+		return "LackMaterial [salesOrderId=" + salesOrderId + ", lackId=" + id + ", lackNumber="
 				+ lackNumber + ", partsName=" + partsName + ", qty=" + qty + ", purchaseNumber=" + purchaseNumber
 				+ ", buyer=" + buyer + ", buyerName=" + buyerName + ", rtd=" + rtd + ", eta=" + eta + ", ata=" + ata
 				+ ", creator=" + creator + ", creatorName=" + creatorName + ", available=" + available

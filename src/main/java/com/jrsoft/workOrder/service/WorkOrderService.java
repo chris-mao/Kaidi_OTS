@@ -35,16 +35,6 @@ public interface WorkOrderService extends AbstractDbService<WorkOrder> {
 	public EasyDataGrid<WorkOrder> findAll(int pageIndex, int pageSize, Map<String, String> params);
 
 	/**
-	 * 获取销售订单行对应的生产工单
-	 * 
-	 * @since 1.0
-	 * @param lineId
-	 *            销售订单行编号
-	 * @return
-	 */
-	public List<WorkOrder> findAllBySalesOrderLine(int lineId);
-
-	/**
 	 * 获取销售订单对应的所有生产工单
 	 * 
 	 * @since 1.0
@@ -63,6 +53,18 @@ public interface WorkOrderService extends AbstractDbService<WorkOrder> {
 	 * @return
 	 */
 	public boolean cancelWorkOrder(List<Integer> workOrderIds);
+
+	/**
+	 * 更新生产工单的实际开工日期
+	 * 
+	 * @since 1.0
+	 * @param workOrderIds
+	 *            生产工单编号，多个编号之间使用逗号分隔
+	 * @param etf
+	 *            实际开工日期
+	 * @return
+	 */
+	public boolean updateATS(List<Integer> workOrderIds, String ats);
 
 	/**
 	 * 更新生产工单的预估完成日期

@@ -30,7 +30,7 @@ public class WorkOrder implements Serializable {
 	/**
 	 * 销售订单行编号
 	 */
-	private int salesOrderLineId;
+	private int salesOrderId;
 
 	/**
 	 * 生产工单编号
@@ -99,12 +99,12 @@ public class WorkOrder implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 
-	public int getSalesOrderLineId() {
-		return salesOrderLineId;
+	public int getSalesOrderId() {
+		return salesOrderId;
 	}
 
-	public void setSalesOrderLineId(int salesOrderLineId) {
-		this.salesOrderLineId = salesOrderLineId;
+	public void setSalesOrderId(int salesOrderId) {
+		this.salesOrderId = salesOrderId;
 	}
 
 	public int getId() {
@@ -205,6 +205,14 @@ public class WorkOrder implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "WorkOrder [salesOrderId=" + salesOrderId + ", Id=" + Id + ", woNumber=" + woNumber + ", qty=" + qty
+				+ ", workshop=" + workshop + ", workshopName=" + workshopName + ", etf=" + etf + ", atf=" + atf
+				+ ", creator=" + creator + ", creatorName=" + creatorName + ", available=" + available
+				+ ", createdTime=" + createdTime + ", updateTime=" + updateTime + "]";
 	}
 	
 }

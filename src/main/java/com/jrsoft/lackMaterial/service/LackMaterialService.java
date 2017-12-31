@@ -35,16 +35,6 @@ public interface LackMaterialService extends AbstractDbService<LackMaterial> {
 	public EasyDataGrid<LackMaterial> findAll(int pageIndex, int pageSize, Map<String, String> params);
 
 	/**
-	 * 获取销售订单行对应的缺料单
-	 * 
-	 * @since 1.0
-	 * @param lineId
-	 *            销售订单行编号
-	 * @return
-	 */
-	public List<LackMaterial> findAllBySalesOrderLine(int lineId);
-
-	/**
 	 * 获取销售订单对应的所有缺料单
 	 * 
 	 * @since 1.0

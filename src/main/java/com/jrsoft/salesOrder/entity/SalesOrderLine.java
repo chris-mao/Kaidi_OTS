@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *
  * @version 1.0
- *
+ * @deprecated
  */
 public class SalesOrderLine implements Serializable {
 
@@ -35,10 +35,7 @@ public class SalesOrderLine implements Serializable {
 	 * 销售订单编号
 	 */
 	private int orderId;
-
-	/**
-	 * 订单行号
-	 */
+	
 	private int lineIndex;
 
 	/**
