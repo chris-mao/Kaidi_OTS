@@ -6,6 +6,7 @@ package com.jrsoft.customer.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,17 +24,60 @@ public class Customer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
+	/**
+	 * 客户编号
+	 */
 	private int customerId;
-	
+
+	/**
+	 * 客户代码
+	 */
 	@NotEmpty(message = "客户代码不允许为空")
-	private String customerNumber;
-	
+	@Length(max = 6, message = "客户代码长度不能超过6位字符")
+	private String customerCode;
+
+	/**
+	 * 客户名称
+	 */
 	@NotEmpty(message = "客户名称不允许为空")
+	@Length(max = 128, message = "客户名称长度不能超过128位字符")
 	private String customerName;
-	
-	@NotEmpty(message = "客户全名不允许为空")
-	private String fullName;
+
+	/**
+	 * 客户简称
+	 */
+	@NotEmpty(message = "客户简称不允许为空")
+	@Length(max = 64, message = "客户简称长度不能超过64位字符")
+	private String shortName;
+
+	/**
+	 * 客户ABC
+	 */
+	@Length(max = 2, message = "客户ABC分类长度不能超过2位字符")
+	private String customerClass;
+
+	/**
+	 * 国家
+	 */
+	@Length(max = 32, message = "国家长度不能超过32位字符")
+	private String country;
+
+	/**
+	 * 城市
+	 */
+	@Length(max = 32, message = "城市长度不能超过32位字符")
+	private String city;
+
+	/**
+	 * 销售人员编号
+	 */
+	private String salesPerson;
+
+	/**
+	 * 销售人员姓名
+	 */
+	private String salesPersonName;
 
 	/**
 	 * 是否有效
@@ -52,112 +96,108 @@ public class Customer implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 
-	/**
-	 * @return the customerId
-	 */
 	public int getCustomerId() {
 		return customerId;
 	}
 
-	/**
-	 * @param customerId the customerId to set
-	 */
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
-	/**
-	 * @return the customerNumber
-	 */
-	public String getCustomerNumber() {
-		return customerNumber;
+	public String getCustomerCode() {
+		return customerCode;
 	}
 
-	/**
-	 * @param customerNumber the customerNumber to set
-	 */
-	public void setCustomerNumber(String customerNumber) {
-		this.customerNumber = customerNumber;
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
 	}
 
-	/**
-	 * @return the customerName
-	 */
 	public String getCustomerName() {
 		return customerName;
 	}
 
-	/**
-	 * @param customerName the customerName to set
-	 */
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
 
-	/**
-	 * @return the fullName
-	 */
-	public String getFullName() {
-		return fullName;
+	public String getShortName() {
+		return shortName;
 	}
 
-	/**
-	 * @param fullName the fullName to set
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
 	}
 
-	/**
-	 * @return the available
-	 */
+	public String getCustomerClass() {
+		return customerClass;
+	}
+
+	public void setCustomerClass(String customerClass) {
+		this.customerClass = customerClass;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getSalesPerson() {
+		return salesPerson;
+	}
+
+	public void setSalesPerson(String salesPerson) {
+		this.salesPerson = salesPerson;
+	}
+
+	public String getSalesPersonName() {
+		return salesPersonName;
+	}
+
+	public void setSalesPersonName(String salesPersonName) {
+		this.salesPersonName = salesPersonName;
+	}
+
 	public boolean isAvailable() {
 		return available;
 	}
 
-	/**
-	 * @param available the available to set
-	 */
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
 
-	/**
-	 * @return the createdTime
-	 */
 	public Date getCreatedTime() {
 		return createdTime;
 	}
 
-	/**
-	 * @param createdTime the createdTime to set
-	 */
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
 
-	/**
-	 * @return the updateTime
-	 */
 	public Date getUpdateTime() {
 		return updateTime;
 	}
 
-	/**
-	 * @param updateTime the updateTime to set
-	 */
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", customerNumber=" + customerNumber + ", customerName="
-				+ customerName + ", fullName=" + fullName + ", available=" + available + ", createdTime=" + createdTime
-				+ ", updateTime=" + updateTime + "]";
+		return "Customer [customerId=" + customerId + ", customerCode=" + customerCode + ", customerName="
+				+ customerName + ", shortName=" + shortName + ", customerClass=" + customerClass + ", country="
+				+ country + ", city=" + city + ", salesPerson=" + salesPerson + ", salesPersonName=" + salesPersonName
+				+ ", available=" + available + ", createdTime=" + createdTime + ", updateTime=" + updateTime + "]";
 	}
-
+	
 }

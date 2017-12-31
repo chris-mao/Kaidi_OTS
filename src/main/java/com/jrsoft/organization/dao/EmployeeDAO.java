@@ -16,7 +16,6 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
 import com.jrsoft.organization.dao.sqlprovider.EmployeeDynaSqlProvider;
-import com.jrsoft.organization.entity.Department;
 import com.jrsoft.organization.entity.Employee;
 
 /**

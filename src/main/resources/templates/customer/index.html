@@ -18,28 +18,67 @@
 <script th:src="@{/js/main.js}" type="text/javascript"></script>
 </head>
 <body>
-	<!-- 数据表格 -->
-	<table id="customerDatagrid" class="easyui-datagrid"
-		toolbar="#customerDatagridToolbar">
-		<thead>
-			<tr>
-				<th data-options="field:'ck',checkbox:true"></th>
-				<th field="customerNumber" style="width: 160px">客户代码</th>
-                <th field="customerName" style="width: 260px">客户名称</th>
-				<th field="nickName" style="width: 360px">客户全名</th>
-				<th field="email" style="width: 60px">国家代码</th>
-				<th field="available" style="width: 60px" align="center"
-					formatter="availableFormatter">启用</th>
-				<th field="createdTime" style="width: 140px"
-					formatter="dateTimeFormatter">创建时间</th>
-				<th field="updateTime" style="width: 140px"
-					formatter="dateTimeFormatter">更新时间</th>
-			</tr>
-		</thead>
-	</table>
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center',split:false,collapsible:false"
+			style="min-height: 200px">
+			<!-- 客户主数据 -->
+			<table id="customerDataGrid" class="easyui-datagrid"
+				toolbar="#customerDataGridToolbar">
+				<thead>
+					<tr>
+						<th data-options="field:'ck',checkbox:true"></th>
+						<th field="customerCode" style="width: 160px">客户代码</th>
+						<th field="shortName" style="width: 260px">客户简称</th>
+						<th field="customerName" style="width: 360px">客户名称</th>
+						<th field="country" style="width: 60px">国家</th>
+						<th field="city" style="width: 60px">城市</th>
+						<th field="available" style="width: 60px" align="center"
+							formatter="availableFormatter">启用</th>
+						<th field="createdTime" style="width: 140px"
+							formatter="dateTimeFormatter">创建时间</th>
+						<th field="updateTime" style="width: 140px"
+							formatter="dateTimeFormatter">更新时间</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div data-options="region:'south',split:false,collapsible:false"
+			style="height: 200px; min-height: 200px;" title="客户地址">
+			<!-- 客户地址数据 -->
+			<table id="customerSiteDataGrid" class="easyui-datagrid"
+				toolbar="#customerSiteDataGridToolbar">
+				<thead data-options="frozen:true">
+					<tr>
+						<th data-options="field:'ck',checkbox:true"></th>
+						<th field="cotact" style="width: 100px">联系人</th>
+						<th field="phone" style="width: 100px">联系电话</th>
+						<th field="email" style="width: 120px">电子邮件</th>
+						<th field="sitePurpose" style="width: 60px">地址用途</th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th field="country" style="width: 60px" align="center">国家</th>
+						<th field="province" style="width: 60px" align="center">省份</th>
+						<th field="city" style="width: 60px" align="center">城市</th>
+						<th field="district" style="width: 100px" align="center">区</th>
+						<th field="address" style="width: 300px">街道地址</th>
+						<th field="zipCode" style="width: 80px">邮政编码</th>
+						<th field="others" style="width: 200px">其他联系方式</th>
+						<th field="available" style="width: 60px" align="center"
+							formatter="availableFormatter">启用</th>
+						<th field="createdTime" style="width: 140px"
+							formatter="dateTimeFormatter">创建时间</th>
+						<th field="updateTime" style="width: 140px"
+							formatter="dateTimeFormatter">更新时间</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
 
-	<!-- 数据表格工具栏 -->
-	<div id="customerDatagridToolbar" class="datagrid-toolbar">
+	<!-- 客户主数据工具栏 -->
+	<div id="customerDataGridToolbar" class="datagrid-toolbar">
 		<shiro:hasPermission name="customer:new">
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				iconCls="icon-add" plain="true" onclick="newCustomer()">新增</a>
@@ -52,7 +91,24 @@
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true" onclick="deleteCustomer()">删除</a>
 		</shiro:hasPermission>
-		<input id="customerSearch" prompt="请输入客户名称" class="easyui-searchbox" />
+		<input id="customerSearch" prompt="请输入客户代码或简称"
+			class="easyui-searchbox" />
+	</div>
+
+	<!-- 客户地址工具栏 -->
+	<div id="customerSiteDataGridToolbar" class="datagrid-toolbar">
+		<shiro:hasPermission name="site:new">
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				iconCls="icon-add" plain="true" onclick="newCustomer()">新增</a>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="site:edit">
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				iconCls="icon-edit" plain="true" onclick="editCustomer()">修改</a>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="site:delete">
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				iconCls="icon-remove" plain="true" onclick="deleteCustomer()">删除</a>
+		</shiro:hasPermission>
 	</div>
 
 	<!-- 新增、编辑窗体 -->
@@ -61,25 +117,36 @@
 		buttons="#customerEditDlgButtons" data-options="modal:true">
 		<form id="customerEditForm" method="post">
 			<div>
+				<input name="customerCode" class="easyui-textbox" required="true"
+					style="width: 100%; height: 34px;" validType="length[1,6]"
+					label="客户代码" lableWidth="60px" />
+			</div>
+			<div>
 				<input name="customerName" class="easyui-textbox" required="true"
-					style="width: 100%; height: 34px;" validType="length[4,64]"
-					label="用户名称" lableWidth="60px" />
+					style="width: 100%; height: 34px;" validType="length[1,128]"
+					label="客户名称" lableWidth="60px" />
 			</div>
 			<div>
-				<input name="nickName" class="easyui-textbox" required="true"
-					style="width: 100%; height: 34px;" validType="length[2,64]"
-					label="显示昵称" lableWidth="60px" />
+				<input name="shortName" class="easyui-textbox" required="true"
+					style="width: 100%; height: 34px;" validType="length[1,64]"
+					label="客户简称" lableWidth="60px" />
 			</div>
 			<div>
-				<input type="email" name="email" class="easyui-textbox"
-					style="width: 100%; height: 34px;" required="true"
-					validType="email" label="电子邮件" lableWidth="60px" />
+				<input name="country" class="easyui-textbox"
+					style="width: 100%; height: 34px;" label="国家" lableWidth="60px" />
 			</div>
 			<div>
-				<input class="easyui-combobox" name="state" label="状态"
+				<input name="city" class="easyui-textbox"
+					style="width: 100%; height: 34px;" label="城市" lableWidth="60px" />
+			</div>
+			<div>
+				<input name="customerClass" class="easyui-textbox"
+					style="width: 100%; height: 34px;" label="ABC分类" lableWidth="60px" />
+			</div>
+			<div>
+				<input class="easyui-combobox" name="salesPerson" label="业务员"
 					lableWidth="60px" style="width: 100%; height: 34px;"
-					required="true"
-					data-options="url:'/customers/api/states',method:'get',valueField:'id',textField:'text',panelHeight:'auto'" />
+					data-options="url:'/employees/api/json',method:'get',valueField:'employeeId',textField:'employeeName',panelHeight:'auto'" />
 			</div>
 			<div style="text-align: right">
 				<input class="easyui-switchbutton" name="available"
@@ -95,5 +162,7 @@
 			iconCls="icon-cancel"
 			onclick="javascript:$('#customerEditDlg').dialog('close')">取消</a>
 	</div>
+
+	<script th:src="@{/js/customer.js}" type="text/javascript"></script>
 </body>
 </html>
