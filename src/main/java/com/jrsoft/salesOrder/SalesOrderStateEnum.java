@@ -4,7 +4,7 @@
 package com.jrsoft.salesOrder;
 
 /**
- * 销售订单行状态枚举类型
+ * 销售订单状态枚举类型
  * 
  * <p>
  * </p>
@@ -30,7 +30,7 @@ package com.jrsoft.salesOrder;
  * @version 1.0
  *
  */
-public enum SalesOrderLineStateEnum {
+public enum SalesOrderStateEnum {
 
 	/**
 	 * 新订单
@@ -71,7 +71,7 @@ public enum SalesOrderLineStateEnum {
 
 	private String stateText;
 
-	SalesOrderLineStateEnum(int stateId, String stateText) {
+	SalesOrderStateEnum(int stateId, String stateText) {
 		this.stateId = stateId;
 		this.stateText = stateText;
 	}

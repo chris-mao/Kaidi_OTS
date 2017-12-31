@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.jrsoft.app.service.AbstractDbService;
 import com.jrsoft.common.EasyDataGrid;
-import com.jrsoft.salesOrder.SalesOrderLineStateEnum;
+import com.jrsoft.salesOrder.SalesOrderStateEnum;
 import com.jrsoft.salesOrder.entity.SalesOrder;
 
 /**
@@ -72,10 +72,10 @@ public interface SalesOrderService extends AbstractDbService<SalesOrder> {
 	 * @param salesOrderIds
 	 *            订单编号，多个编号之间使用逗号分隔
 	 * @param state
-	 *            订单行状态 {@link SalesOrderLineStateEnum}
+	 *            订单行状态 {@link SalesOrderStateEnum}
 	 * @return
 	 */
-	public boolean updateState(List<Integer> salesOrderIds, SalesOrderLineStateEnum state);
+	public boolean updateState(List<Integer> salesOrderIds, SalesOrderStateEnum state);
 
 	/**
 	 * 更新订单预计交期
