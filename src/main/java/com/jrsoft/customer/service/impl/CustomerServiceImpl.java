@@ -28,7 +28,7 @@ import com.jrsoft.customer.service.CustomerService;
  */
 @Service
 public class CustomerServiceImpl implements CustomerService {
-	
+
 	@Autowired
 	private CustomerDAO customerDAO;
 
@@ -71,14 +71,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer findOne(Customer customer) {
 		if (customer.getCustomerId() != 0) {
 			return this.customerDAO.findById(customer.getCustomerId());
-		}
-		else if (!StringUtils.isEmpty(customer.getCustomerCode())) {
+		} else if (!StringUtils.isEmpty(customer.getCustomerCode())) {
 			return this.customerDAO.findByCode(customer.getCustomerCode());
-		}
-		else if (!StringUtils.isEmpty(customer.getShortName())) {
+		} else if (!StringUtils.isEmpty(customer.getShortName())) {
 			return this.customerDAO.findByShortName(customer.getShortName());
-		}
-		else if (!StringUtils.isEmpty(customer.getShortName())) {
+		} else if (!StringUtils.isEmpty(customer.getCustomerName())) {
 			return this.customerDAO.findByName(customer.getCustomerName());
 		}
 		return null;
@@ -86,20 +83,17 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public boolean insert(Customer customer) {
-		// TODO Auto-generated method stub
-		return false;
+		return 1 == this.customerDAO.insert(customer);
 	}
 
 	@Override
 	public boolean update(Customer customer) {
-		// TODO Auto-generated method stub
-		return false;
+		return 1 == this.customerDAO.update(customer);
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		return 1 == this.customerDAO.delete(id);
 	}
 
 	@Override
@@ -109,9 +103,13 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<CustomerSite> findAllSiteByCustomer(int customerId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CustomerSite> findAllSitesByCustomer(int customerId) {
+		return this.customerDAO.findAllSitesByCustomer(customerId);
+	}
+
+	@Override
+	public List<CustomerSite> findAllPurposeSitesByCustomer(int customerId, String sitePurpose) {
+		return this.customerDAO.findAllPurposeSitesByCustomer(customerId, sitePurpose);
 	}
 
 	@Override
@@ -121,21 +119,27 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public int newSite(CustomerSite site) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean insertSite(CustomerSite site) {
+		return 1 == this.customerDAO.insertSite(site);
 	}
 
 	@Override
 	public boolean updateSite(CustomerSite site) {
 		// TODO Auto-generated method stub
-		return false;
+		return 1 == this.customerDAO.updateSite(site);
 	}
 
 	@Override
 	public boolean deleteSite(int siteId) {
-		// TODO Auto-generated method stub
-		return false;
+		return 1 == this.customerDAO.deleteSite(siteId);
+	}
+
+	@Override
+	public CustomerSite findOneSite(int siteId) {
+		if (0 == siteId) {
+			return null;
+		}
+		return this.customerDAO.findOneSite(siteId);
 	}
 
 }

@@ -85,7 +85,12 @@ public class CustomerSite implements Serializable {
 	@NotEmpty(message = "街道地址不能为空")
 	@Length(max = 256, message = "街道地址长度不能超过256个字符")
 	private String address;
-
+	
+	/**
+	 * 国家／
+	 */
+	private String addressText;
+	
 	/**
 	 * 邮政编码
 	 */
@@ -268,6 +273,14 @@ public class CustomerSite implements Serializable {
 				+ ", address=" + address + ", zipCode=" + zipCode + ", contact=" + contact + ", phone=" + phone
 				+ ", email=" + email + ", others=" + others + ", available=" + available + ", createdTime="
 				+ createdTime + ", updateTime=" + updateTime + "]";
+	}
+
+	public String getAddressText() {
+		return addressText;
+	}
+
+	public void setAddressText(String addressText) {
+		this.addressText = addressText;
 	}
 
 }

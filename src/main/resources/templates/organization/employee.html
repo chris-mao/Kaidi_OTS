@@ -27,9 +27,13 @@
 			<!-- 数据表格 -->
 			<table id="employeeDataGrid" class="easyui-datagrid"
 				toolbar="#employeeDataGridToolbar">
+                <thead data-options="frozen:true">
+                    <tr>
+                        <th data-options="field:'ck',checkbox:true"></th>
+                    </tr>
+                </thead>
 				<thead>
 					<tr>
-						<th data-options="field:'ck',checkbox:true"></th>
 						<th field="employeeNum" style="width: 80px">员工工号</th>
 						<th field="employeeName" style="width: 120px">员工名称</th>
 						<th field="phone" style="width: 160px" align="center">联系电话</th>

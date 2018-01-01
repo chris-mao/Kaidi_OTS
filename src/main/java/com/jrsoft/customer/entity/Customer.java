@@ -72,7 +72,7 @@ public class Customer implements Serializable {
 	/**
 	 * 销售人员编号
 	 */
-	private String salesPerson;
+	private int salesPerson;
 
 	/**
 	 * 销售人员姓名
@@ -152,11 +152,11 @@ public class Customer implements Serializable {
 		this.city = city;
 	}
 
-	public String getSalesPerson() {
+	public int getSalesPerson() {
 		return salesPerson;
 	}
 
-	public void setSalesPerson(String salesPerson) {
+	public void setSalesPerson(int salesPerson) {
 		this.salesPerson = salesPerson;
 	}
 

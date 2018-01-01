@@ -6,12 +6,14 @@ package com.jrsoft.customer.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
 
 import com.jrsoft.customer.dao.sqlprovider.CustomerDynaSqlProvider;
 import com.jrsoft.customer.entity.Customer;
@@ -155,6 +157,7 @@ public interface CustomerDAO {
 	 * @param customer
 	 * @return
 	 */
+	@Insert("INSERT INTO customer(customer_code, short_name, customer_name, customer_class, country, city, sales_person, available, created_time) VALUES(#{customerCode}, #{shortName}, #{customerName}, #{customerClass}, #{country}, #{city}, #{salesPerson}, #{available}, NOW())")
 	@Options(useGeneratedKeys = true, keyProperty = "customerId")
 	public int insert(Customer customer);
 
@@ -164,7 +167,8 @@ public interface CustomerDAO {
 	 * @param customer
 	 * @return
 	 */
-	public int udpate(Customer customer);
+	@Update("UPDATE customer SET customer_code = #{customerCode}, short_name = #{shortName}, customer_name = #{customerName}, customer_class = #{customerClass}, country = #{country}, city = #{city}, sales_person = #{salesPerson}, available = #{available} WHERE customer_id = #{customerId}")
+	public int update(Customer customer);
 
 	/**
 	 * 删除客户
@@ -175,6 +179,22 @@ public interface CustomerDAO {
 	 */
 	@Delete("DELETE FROM customer WHERE customer_id = #{id}")
 	public int delete(@Param(value = "id") int id);
+	
+	@Select("SELECT site_id, customer_id, site_purpose, country, province, city, district, address, address_text, zip_code, phone, contact, email, others, available, created_time, update_time FROM vw_customer_site WHERE site_id = #{id}")
+	@Results({ @Result(property = "siteId", column = "site_id", id = true),
+			@Result(property = "customerId", column = "customer_id"),
+			@Result(property = "sitePurpose", column = "site_purpose"),
+			@Result(property = "country", column = "country"), @Result(property = "province", column = "province"),
+			@Result(property = "city", column = "city"), @Result(property = "district", column = "district"),
+			@Result(property = "address", column = "address"), 
+			@Result(property = "addressText", column = "address_text"), 
+			@Result(property = "zipCode", column = "zip_code"),
+			@Result(property = "phone", column = "phone"), @Result(property = "contact", column = "contact"),
+			@Result(property = "email", column = "email"), @Result(property = "others", column = "others"),
+			@Result(property = "available", column = "available"),
+			@Result(property = "createdTime", column = "created_time"),
+			@Result(property = "updateTime", column = "update_time") })
+	public CustomerSite findOneSite(@Param(value = "id") int siteId);
 
 	/**
 	 * 查询客户所有地址
@@ -183,7 +203,21 @@ public interface CustomerDAO {
 	 *            客户编号
 	 * @return
 	 */
-	public List<CustomerSite> findAllSiteByCustomer(int customerId);
+	@Select("SELECT site_id, customer_id, site_purpose, country, province, city, district, address, address_text, zip_code, phone, contact, email, others, available, created_time, update_time FROM vw_customer_site WHERE customer_id = #{id} ORDER BY site_purpose, address_text")
+	@Results({ @Result(property = "siteId", column = "site_id", id = true),
+			@Result(property = "customerId", column = "customer_id"),
+			@Result(property = "sitePurpose", column = "site_purpose"),
+			@Result(property = "country", column = "country"), @Result(property = "province", column = "province"),
+			@Result(property = "city", column = "city"), @Result(property = "district", column = "district"),
+			@Result(property = "address", column = "address"), 
+			@Result(property = "addressText", column = "address_text"), 
+			@Result(property = "zipCode", column = "zip_code"),
+			@Result(property = "phone", column = "phone"), @Result(property = "contact", column = "contact"),
+			@Result(property = "email", column = "email"), @Result(property = "others", column = "others"),
+			@Result(property = "available", column = "available"),
+			@Result(property = "createdTime", column = "created_time"),
+			@Result(property = "updateTime", column = "update_time") })
+	public List<CustomerSite> findAllSitesByCustomer(@Param(value = "id") int customerId);
 
 	/**
 	 * 查询客户用途地址
@@ -194,7 +228,21 @@ public interface CustomerDAO {
 	 *            地址用途
 	 * @return
 	 */
-	public List<CustomerSite> findAllPurposeSiteByCustomer(int customerId, String sitePurpose);
+	@Select("SELECT site_id, customer_id, site_purpose, country, province, city, district, address, address_text, zip_code, phone, contact, email, others, available, created_time, update_time FROM vw_customer_site WHERE customer_id = #{id} AND site_purpose = #{purpose} ORDER BY site_purpose, address_text")
+	@Results({ @Result(property = "siteId", column = "site_id", id = true),
+			@Result(property = "customerId", column = "customer_id"),
+			@Result(property = "sitePurpose", column = "site_purpose"),
+			@Result(property = "country", column = "country"), @Result(property = "province", column = "province"),
+			@Result(property = "city", column = "city"), @Result(property = "district", column = "district"),
+			@Result(property = "address", column = "address"), 
+			@Result(property = "addressText", column = "address_text"), 
+			@Result(property = "zipCode", column = "zip_code"),
+			@Result(property = "phone", column = "phone"), @Result(property = "contact", column = "contact"),
+			@Result(property = "email", column = "email"), @Result(property = "others", column = "others"),
+			@Result(property = "available", column = "available"),
+			@Result(property = "createdTime", column = "created_time"),
+			@Result(property = "updateTime", column = "update_time") })
+	public List<CustomerSite> findAllPurposeSitesByCustomer(@Param(value = "id") int customerId, @Param(value = "purpose") String sitePurpose);
 
 	/**
 	 * 新增客户地址
@@ -202,6 +250,7 @@ public interface CustomerDAO {
 	 * @param site
 	 * @return
 	 */
+	@Insert("INSERT INTO customer_site(customer_id, site_purpose, country, province, city, district, address, zip_code, phone, contact, email, others, available, created_time) VALUES(#{customerId}, #{sitePurpose}, #{country}, #{province}, #{city}, #{district}, #{address}, #{zipCode}, #{phone}, #{contact}, #{email}, #{others}, #{available}, NOW())")
 	@Options(useGeneratedKeys = true, keyProperty = "siteId")
 	public int insertSite(CustomerSite site);
 
@@ -211,7 +260,8 @@ public interface CustomerDAO {
 	 * @param site
 	 * @return
 	 */
-	public int udpateSite(CustomerSite site);
+	@Update("UPDATE customer_site SET customer_id = #{customerId}, site_purpose = #{sitePurpose}, country = #{country}, province = #{province}, city = #{city}, district = #{district}, address = #{address}, zip_code = #{zipCode}, phone = #{phone}, contact = #{contact}, email = #{email}, others = #{others}, available = #{available} WHERE site_id = #{siteId}")
+	public int updateSite(CustomerSite site);
 
 	/**
 	 * 删除客户地址
@@ -220,6 +270,6 @@ public interface CustomerDAO {
 	 *            地址编号
 	 * @return
 	 */
-	@Delete("DELETE FROM customer_site WHERE customer_id = #{id}")
+	@Delete("DELETE FROM customer_site WHERE site_id = #{id}")
 	public int deleteSite(@Param(value = "id") int id);
 }

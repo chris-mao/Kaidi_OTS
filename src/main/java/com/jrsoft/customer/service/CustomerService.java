@@ -30,13 +30,36 @@ public interface CustomerService extends AbstractDbService<Customer> {
 	 */
 	public Set<Customer> findAllByEmployee(int employeeId);
 	
-	public List<CustomerSite> findAllSiteByCustomer(int customerId);
+	/**
+	 * 查询客户所有地址
+	 * 
+	 * @param customerId
+	 *            客户编号
+	 * @return
+	 */
+	public List<CustomerSite> findAllSitesByCustomer(int customerId);
 	
-//	public PageInfo<CustomerSite> findAll(int pageNum, int pageSize, int customerId);
+	/**
+	 * 查询客户用途地址
+	 * 
+	 * @param customerId
+	 *            客户编号
+	 * @param sitePurpose
+	 *            地址用途
+	 * @return
+	 */
+	public List<CustomerSite> findAllPurposeSitesByCustomer(int customerId, String sitePurpose);
 	
 	public EasyDataGrid<CustomerSite> findAll(int pageIndex, int pageSize, int customerId);
 	
-	public int newSite(CustomerSite site);
+	/**
+	 * 
+	 * @param siteId
+	 * @return
+	 */
+	public CustomerSite findOneSite(int siteId);
+	
+	public boolean insertSite(CustomerSite site);
 	
 	public boolean updateSite(CustomerSite site);
 	
