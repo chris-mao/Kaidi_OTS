@@ -62,8 +62,8 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
 	}
 
 	@Override
-	public PageInfo<AuthPermission> findAll(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
+	public PageInfo<AuthPermission> findAll(int pageIndex, int pageSize) {
+		PageHelper.startPage(pageIndex, pageSize);
 		return new PageInfo<AuthPermission>(authPermissionDAO.findAll(false));
 	}
 

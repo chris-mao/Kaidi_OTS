@@ -63,7 +63,7 @@ function editDepartment() {
 		    switchbuttonObj.switchbutton("check");
 		}
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要编辑的部门！");
 	}
 }
 
@@ -121,6 +121,6 @@ function deleteDepartment() {
 			}
 		});
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要删除的部门！");
 	}
 }

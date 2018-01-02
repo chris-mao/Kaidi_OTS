@@ -60,8 +60,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * @see com.jrsoft.app.service.AbstractDbService#findAll(int, int)
 	 */
 	@Override
-	public PageInfo<Department> findAll(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
+	public PageInfo<Department> findAll(int pageIndex, int pageSize) {
+		PageHelper.startPage(pageIndex, pageSize);
 		return new PageInfo<>(findAll());
 	}
 

@@ -85,7 +85,7 @@ function editRole() {
 		}
 		post_url = "/roles/api/" + row.roleId;
 	} else {
-		$.messager.alert("提示", "请选择一个待编辑的数据行！");
+		$.messager.alert("提示", "请选择要编辑的角色！");
 	}
 }
 
@@ -142,7 +142,7 @@ function deleteRole() {
 					}
 				});
 	} else {
-		$.messager.alert("提示", "请选择一个待删除的数据行！");
+		$.messager.alert("提示", "请选择要删除的角色！");
 	}
 }
 

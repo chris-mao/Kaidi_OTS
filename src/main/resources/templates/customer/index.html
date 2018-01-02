@@ -23,10 +23,14 @@
 			<!-- 客户主数据 -->
 			<table id="customerDataGrid" class="easyui-datagrid"
 				toolbar="#customerDataGridToolbar">
+                <thead data-options="frozen:true">
+                    <tr>
+                        <th field="customerCode" style="width: 100px">客户代码</th>
+                        <th field="shortName" style="width: 160px">客户简称</th>
+                    </tr>
+                </thead>
 				<thead>
 					<tr>
-						<th field="customerCode" style="width: 100px">客户代码</th>
-						<th field="shortName" style="width: 160px">客户简称</th>
 						<th field="customerName" style="width: 360px">客户名称</th>
 						<th field="country" style="width: 60px">国家</th>
 						<th field="city" style="width: 60px">城市</th>

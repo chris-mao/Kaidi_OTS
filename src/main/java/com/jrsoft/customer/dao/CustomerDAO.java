@@ -179,19 +179,25 @@ public interface CustomerDAO {
 	 */
 	@Delete("DELETE FROM customer WHERE customer_id = #{id}")
 	public int delete(@Param(value = "id") int id);
-	
+
+	/**
+	 * 按地址编号查询地址
+	 * 
+	 * @param siteId
+	 *            地址编号
+	 * @return
+	 */
 	@Select("SELECT site_id, customer_id, site_purpose, country, province, city, district, address, address_text, zip_code, phone, contact, email, others, available, created_time, update_time FROM vw_customer_site WHERE site_id = #{id}")
 	@Results({ @Result(property = "siteId", column = "site_id", id = true),
 			@Result(property = "customerId", column = "customer_id"),
 			@Result(property = "sitePurpose", column = "site_purpose"),
 			@Result(property = "country", column = "country"), @Result(property = "province", column = "province"),
 			@Result(property = "city", column = "city"), @Result(property = "district", column = "district"),
-			@Result(property = "address", column = "address"), 
-			@Result(property = "addressText", column = "address_text"), 
-			@Result(property = "zipCode", column = "zip_code"),
-			@Result(property = "phone", column = "phone"), @Result(property = "contact", column = "contact"),
-			@Result(property = "email", column = "email"), @Result(property = "others", column = "others"),
-			@Result(property = "available", column = "available"),
+			@Result(property = "address", column = "address"),
+			@Result(property = "addressText", column = "address_text"),
+			@Result(property = "zipCode", column = "zip_code"), @Result(property = "phone", column = "phone"),
+			@Result(property = "contact", column = "contact"), @Result(property = "email", column = "email"),
+			@Result(property = "others", column = "others"), @Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
 	public CustomerSite findOneSite(@Param(value = "id") int siteId);
@@ -209,12 +215,11 @@ public interface CustomerDAO {
 			@Result(property = "sitePurpose", column = "site_purpose"),
 			@Result(property = "country", column = "country"), @Result(property = "province", column = "province"),
 			@Result(property = "city", column = "city"), @Result(property = "district", column = "district"),
-			@Result(property = "address", column = "address"), 
-			@Result(property = "addressText", column = "address_text"), 
-			@Result(property = "zipCode", column = "zip_code"),
-			@Result(property = "phone", column = "phone"), @Result(property = "contact", column = "contact"),
-			@Result(property = "email", column = "email"), @Result(property = "others", column = "others"),
-			@Result(property = "available", column = "available"),
+			@Result(property = "address", column = "address"),
+			@Result(property = "addressText", column = "address_text"),
+			@Result(property = "zipCode", column = "zip_code"), @Result(property = "phone", column = "phone"),
+			@Result(property = "contact", column = "contact"), @Result(property = "email", column = "email"),
+			@Result(property = "others", column = "others"), @Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
 	public List<CustomerSite> findAllSitesByCustomer(@Param(value = "id") int customerId);
@@ -234,15 +239,15 @@ public interface CustomerDAO {
 			@Result(property = "sitePurpose", column = "site_purpose"),
 			@Result(property = "country", column = "country"), @Result(property = "province", column = "province"),
 			@Result(property = "city", column = "city"), @Result(property = "district", column = "district"),
-			@Result(property = "address", column = "address"), 
-			@Result(property = "addressText", column = "address_text"), 
-			@Result(property = "zipCode", column = "zip_code"),
-			@Result(property = "phone", column = "phone"), @Result(property = "contact", column = "contact"),
-			@Result(property = "email", column = "email"), @Result(property = "others", column = "others"),
-			@Result(property = "available", column = "available"),
+			@Result(property = "address", column = "address"),
+			@Result(property = "addressText", column = "address_text"),
+			@Result(property = "zipCode", column = "zip_code"), @Result(property = "phone", column = "phone"),
+			@Result(property = "contact", column = "contact"), @Result(property = "email", column = "email"),
+			@Result(property = "others", column = "others"), @Result(property = "available", column = "available"),
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
-	public List<CustomerSite> findAllPurposeSitesByCustomer(@Param(value = "id") int customerId, @Param(value = "purpose") String sitePurpose);
+	public List<CustomerSite> findAllPurposeSitesByCustomer(@Param(value = "id") int customerId,
+			@Param(value = "purpose") String sitePurpose);
 
 	/**
 	 * 新增客户地址

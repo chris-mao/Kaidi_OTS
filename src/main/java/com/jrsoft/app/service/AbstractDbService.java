@@ -15,7 +15,7 @@ import com.jrsoft.common.EasyDataGrid;
  *
  */
 public interface AbstractDbService<T> {
-	
+
 	/**
 	 * 
 	 * @return
@@ -43,7 +43,7 @@ public interface AbstractDbService<T> {
 	 *            分页大小
 	 * @return {@link PageInfo}
 	 */
-	public PageInfo<T> findAll(int pageNum, int pageSize);
+	public PageInfo<T> findAll(int pageIndex, int pageSize);
 
 	/**
 	 * 根据传入的查询条件查询数据，具有分页功能 如果参数searchStr为空，则查询所有数据，否则查询符合查询条件的数据
@@ -55,7 +55,7 @@ public interface AbstractDbService<T> {
 	 *            分页大小
 	 * @param searchStr
 	 *            模糊查询内容
-	 * @return
+	 * @return {@link EasyDataGrid}
 	 */
 	public EasyDataGrid<T> findAll(int pageIndex, int pageSize, String searchStr);
 

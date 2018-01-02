@@ -67,7 +67,7 @@ function editCustomer() {
 			switchbuttonObj.switchbutton("check");
 		}
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要编辑的客户！");
 	}
 }
 
@@ -131,7 +131,7 @@ function deleteCustomer() {
 					}
 				});
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要删除的客户！");
 	}
 }
 
@@ -165,7 +165,7 @@ function newSite() {
 		var switchbuttonObj = $(".easyui-switchbutton[switchbuttonName='available']");
 		switchbuttonObj.switchbutton("check");
 	} else {
-		$.messager.alert("提示", "请先选择一个客户后，再执行新增地址操作。");
+		$.messager.alert("提示", "请选择要添加地址的客户！");
 	}
 }
 
@@ -181,7 +181,7 @@ function editSite() {
 			switchbuttonObj.switchbutton("check");
 		}
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要编辑的地址！");
 	}
 }
 
@@ -241,6 +241,6 @@ function deleteSite() {
 			}
 		});
 	} else {
-		$.messager.alert("提示", "请选择要删除的数据行");
+		$.messager.alert("提示", "请选择要删除的地址！");
 	}
 }

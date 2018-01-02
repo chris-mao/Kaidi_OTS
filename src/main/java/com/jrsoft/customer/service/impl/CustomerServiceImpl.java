@@ -43,8 +43,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public PageInfo<Customer> findAll(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
+	public PageInfo<Customer> findAll(int pageIndex, int pageSize) {
+		PageHelper.startPage(pageIndex, pageSize);
 		return new PageInfo<Customer>(customerDAO.findAll(false));
 	}
 
@@ -113,9 +113,14 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public EasyDataGrid<CustomerSite> findAll(int pageIndex, int pageSize, int customerId) {
-		// TODO Auto-generated method stub
-		return null;
+	public EasyDataGrid<CustomerSite> findAllSitesByCustomer(int pageIndex, int pageSize, int customerId) {
+		PageInfo<CustomerSite> pageInfo;
+		pageInfo = new PageInfo<CustomerSite>(customerDAO.findAllSitesByCustomer(customerId));
+
+		EasyDataGrid<CustomerSite> dg = new EasyDataGrid<CustomerSite>();
+		dg.setTotal(pageInfo.getTotal());
+		dg.setRows(pageInfo.getList());
+		return dg;
 	}
 
 	@Override

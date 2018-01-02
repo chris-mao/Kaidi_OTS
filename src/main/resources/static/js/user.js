@@ -64,7 +64,7 @@ function editUser() {
 		}
 		$("#userEditForm input:first").textbox("readonly", true);
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要编辑的用户！");
 	}
 }
 
@@ -85,7 +85,7 @@ function changeUserPsd() {
 	if (row) {
 		changePsd(row.userId, row.userName);
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要修改密码的用户！");
 	}
 }
 
@@ -144,6 +144,6 @@ function deleteUser() {
 			}
 		});
 	} else {
-		$.messager.alert("提示", "没有选中的数据行");
+		$.messager.alert("提示", "请选择要删除的用户！");
 	}
 }

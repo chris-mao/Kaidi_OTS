@@ -76,10 +76,11 @@ public class CustomerRestController {
 	/**
 	 * 获取客户主数据列表
 	 * 
+	 * @since 1.0
 	 * @param pageIndex
 	 *            页码
 	 * @param pageSize
-	 *            每页记录笔数
+	 *            分页大小
 	 * @param searchStr
 	 *            查询字符串
 	 * @return {@link EasyDataGrid}<{@link Customer}>
@@ -95,6 +96,7 @@ public class CustomerRestController {
 	/**
 	 * 以JSON格式返回有效的客户清单
 	 * 
+	 * @since 1.0
 	 * @return String
 	 */
 	@GetMapping("/json")
@@ -197,6 +199,7 @@ public class CustomerRestController {
 	/**
 	 * 获取指定客户的地址清单
 	 * 
+	 * @since 1.0
 	 * @param customerId
 	 *            客户编号
 	 * @return List<{@link CustomerSite}>
@@ -213,6 +216,7 @@ public class CustomerRestController {
 	/**
 	 * 获取指定客户、指定用途的地址清单
 	 * 
+	 * @since 1.0
 	 * @param customerId
 	 *            客户编号
 	 * @param sitePurpose
@@ -237,6 +241,7 @@ public class CustomerRestController {
 	/**
 	 * 创建新的客户地址
 	 * 
+	 * @since 1.0
 	 * @param request
 	 * @return
 	 */
@@ -267,17 +272,20 @@ public class CustomerRestController {
 	/**
 	 * 获取客户地址
 	 * 
+	 * @since 1.0
+	 * @param siteId
+	 *            地址编号
 	 * @return
 	 */
 	@GetMapping("/sites/{id}")
-	public CustomerSite getCustomerSite() {
-		return null;
-		// return this.customerService.findOne(entity);
+	public CustomerSite getCustomerSite(@PathVariable("id") int siteId) {
+		return this.customerService.findOneSite(siteId);
 	}
 
 	/**
 	 * 更新客户地址
 	 * 
+	 * @since 1.0
 	 * @param siteId
 	 *            地址编号
 	 * @param request
@@ -314,6 +322,7 @@ public class CustomerRestController {
 	/**
 	 * 删除客户地址
 	 * 
+	 * @since 1.0
 	 * @param siteId
 	 *            地址编号
 	 * @param request

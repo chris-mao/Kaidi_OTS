@@ -44,8 +44,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public PageInfo<Employee> findAll(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
+	public PageInfo<Employee> findAll(int pageIndex, int pageSize) {
+		PageHelper.startPage(pageIndex, pageSize);
 		return new PageInfo<Employee>(employeeDAO.findAll(false));
 	}
 
