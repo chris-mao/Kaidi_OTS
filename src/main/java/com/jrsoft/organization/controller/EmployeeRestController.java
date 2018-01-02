@@ -24,7 +24,7 @@ import com.jrsoft.organization.service.EmployeeService;
 
 /**
  * <p>
- * 员工控制器类，提供员工数据的维护方法接口
+ * 员工控制器类，提供员工数据的维护API方法接口
  * <dl>
  * <dt>GET: employees/api/list?page=1&rows=20&searchValue=</dt>
  * <dd>按页码返回（符合查询条件或是全部）员工数据列表，需要拥有<code>employee:list</code>权限</dd>

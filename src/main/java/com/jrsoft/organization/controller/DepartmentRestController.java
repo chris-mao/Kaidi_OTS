@@ -26,7 +26,7 @@ import com.jrsoft.organization.service.EmployeeService;
 
 /**
  * <p>
- * 部门控制器类，提供部门数据的维护方法接口
+ * 部门控制器类，提供部门数据的维护API方法接口
  * <dl>
  * <dt>GET: departments/api/list?page=1&rows=20&searchValue=</dt>
  * <dd>按页码返回（符合查询条件或是全部）部门数据列表，需要拥有<code>department:list</code>权限</dd>

@@ -3,7 +3,6 @@ package com.jrsoft.organization.service;
 import java.util.List;
 
 import com.jrsoft.app.service.AbstractDbService;
-import com.jrsoft.organization.entity.Department;
 import com.jrsoft.organization.entity.Employee;
 
 /**
@@ -19,6 +18,7 @@ public interface EmployeeService extends AbstractDbService<Employee> {
 	/**
 	 * 按部门查询员工列表
 	 * 
+	 * @since 1.0
 	 * @param deptId
 	 *            部门编号
 	 * @return

@@ -32,6 +32,7 @@ public interface CustomerDAO {
 	/**
 	 * 查询所有客户
 	 * 
+	 * @since 1.0
 	 * @param onlyAvailable
 	 * @return
 	 */
@@ -52,6 +53,7 @@ public interface CustomerDAO {
 	/**
 	 * 按客户编号查询
 	 * 
+	 * @since 1.0
 	 * @param id
 	 * @return
 	 */
@@ -72,6 +74,7 @@ public interface CustomerDAO {
 	/**
 	 * 按客户代码查询
 	 * 
+	 * @since 1.0
 	 * @param customerCode
 	 * @return
 	 */
@@ -92,6 +95,7 @@ public interface CustomerDAO {
 	/**
 	 * 按客户名称查询
 	 * 
+	 * @since 1.0
 	 * @param customerName
 	 * @return
 	 */
@@ -112,6 +116,7 @@ public interface CustomerDAO {
 	/**
 	 * 按客户简称查询
 	 * 
+	 * @since 1.0
 	 * @param shortName
 	 * @return
 	 */
@@ -132,6 +137,7 @@ public interface CustomerDAO {
 	/**
 	 * 按客户代码或是客户简称查询客户
 	 * 
+	 * @since 1.0
 	 * @param customer
 	 * @return
 	 */
@@ -149,11 +155,10 @@ public interface CustomerDAO {
 			@Result(property = "updateTime", column = "update_time") })
 	public List<Customer> fuzzyQuery(Customer customer);
 
-	// public List<Customer> findAllByEmployee();
-
 	/**
 	 * 新增客户
 	 * 
+	 * @since 1.0
 	 * @param customer
 	 * @return
 	 */
@@ -164,6 +169,7 @@ public interface CustomerDAO {
 	/**
 	 * 更新客户
 	 * 
+	 * @since 1.0
 	 * @param customer
 	 * @return
 	 */
@@ -173,6 +179,7 @@ public interface CustomerDAO {
 	/**
 	 * 删除客户
 	 * 
+	 * @since 1.0
 	 * @param id
 	 *            客户编号
 	 * @return
@@ -183,6 +190,7 @@ public interface CustomerDAO {
 	/**
 	 * 按地址编号查询地址
 	 * 
+	 * @since 1.0
 	 * @param siteId
 	 *            地址编号
 	 * @return
@@ -205,6 +213,7 @@ public interface CustomerDAO {
 	/**
 	 * 查询客户所有地址
 	 * 
+	 * @since 1.0
 	 * @param customerId
 	 *            客户编号
 	 * @return
@@ -227,6 +236,7 @@ public interface CustomerDAO {
 	/**
 	 * 查询客户用途地址
 	 * 
+	 * @since 1.0
 	 * @param customerId
 	 *            客户编号
 	 * @param sitePurpose
@@ -252,6 +262,7 @@ public interface CustomerDAO {
 	/**
 	 * 新增客户地址
 	 * 
+	 * @since 1.0
 	 * @param site
 	 * @return
 	 */
@@ -262,6 +273,7 @@ public interface CustomerDAO {
 	/**
 	 * 更新客户地址
 	 * 
+	 * @since 1.0
 	 * @param site
 	 * @return
 	 */
@@ -271,6 +283,7 @@ public interface CustomerDAO {
 	/**
 	 * 删除客户地址
 	 * 
+	 * @since 1.0
 	 * @param id
 	 *            地址编号
 	 * @return

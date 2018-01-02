@@ -31,6 +31,7 @@ public interface EmployeeDAO {
 	/**
 	 * 查询所有员工
 	 * 
+	 * @since 1.0
 	 * @param onlyAvailable
 	 *            布尔值，为treu显查询available=1的员工，否则查询所有员工
 	 * @return
@@ -49,6 +50,7 @@ public interface EmployeeDAO {
 	/**
 	 * 按编号查询员工
 	 * 
+	 * @since 1.0
 	 * @param id
 	 *            员工编号
 	 * @return
@@ -67,6 +69,7 @@ public interface EmployeeDAO {
 	/**
 	 * 按姓名查询员工
 	 * 
+	 * @since 1.0
 	 * @param employeeName
 	 *            员工姓名
 	 * @return
@@ -85,6 +88,7 @@ public interface EmployeeDAO {
 	/**
 	 * 按工号查询员工
 	 * 
+	 * @since 1.0
 	 * @param employeeNum
 	 *            员工工号
 	 * @return
@@ -103,6 +107,7 @@ public interface EmployeeDAO {
 	/**
 	 * 按员工工号或是姓名模糊查询员工
 	 * 
+	 * @since 1.0
 	 * @param employee
 	 * @return
 	 */
@@ -116,7 +121,14 @@ public interface EmployeeDAO {
 			@Result(property = "createdTime", column = "created_time"),
 			@Result(property = "updateTime", column = "update_time") })
 	public List<Employee> fuzzyQuery(Employee employee);
-	
+
+	/**
+	 * 按部门查询员工
+	 * 
+	 * @since 1.0
+	 * @param departmentId
+	 * @return
+	 */
 	@Select("SELECT employee_id, employee_num, employee_name, email, phone, department_id, department_name, available, created_time, update_time FROM vw_employee WHERE department_id = #{deptId}")
 	@Results({ @Result(property = "employeeId", column = "employee_id", id = true),
 			@Result(property = "employeeNum", column = "employee_num"),
@@ -131,6 +143,7 @@ public interface EmployeeDAO {
 	/**
 	 * 创建新员工
 	 * 
+	 * @since 1.0
 	 * @param department
 	 * @return 受影响的行数
 	 */
@@ -141,6 +154,7 @@ public interface EmployeeDAO {
 	/**
 	 * 更新员工
 	 * 
+	 * @since 1.0
 	 * @param department
 	 * @return 受影响的行数
 	 */
@@ -150,6 +164,7 @@ public interface EmployeeDAO {
 	/**
 	 * 删除员工
 	 * 
+	 * @since 1.0
 	 * @param id
 	 * @return 受影响的行数
 	 */

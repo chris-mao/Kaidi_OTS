@@ -27,7 +27,7 @@ import com.jrsoft.common.JsonResult;
 
 /**
  * <p>
- * 系统角色控制器类，提供系统角色维护方法接口
+ * 系统角色控制器类，提供系统角色维护API方法接口
  * <dl>
  * <dt>GET: roles/api/list?page=1&rows=20&searchValue=</dt>
  * <dd>按页码返回（符合查询条件或是全部）角色数据列表，需要拥有<code>authRole:list</code>权限</dd>

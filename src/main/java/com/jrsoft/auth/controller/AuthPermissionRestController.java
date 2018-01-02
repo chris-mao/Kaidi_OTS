@@ -25,7 +25,7 @@ import com.jrsoft.common.EasyDataGrid;
 
 /**
  * <p>
- * 系统权限控制器类，提供系统权限维护方法接口
+ * 系统权限控制器类，提供系统权限维护API方法接口
  * <dl>
  * <dt>GET: permissions/api/list?parentId=1&page=1&rows=20&searchValue=</dt>
  * <dd>按父节点返回（符合查询条件或是全部）权限数据列表，需要拥有<code>authPermission:list</code>权限</dd>

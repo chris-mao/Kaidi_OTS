@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * com.jrsoft.salesOrder.controller SalesOrderRestController
+ * <p>
+ * 销售订单控制器类，提供销售订单数据的维护API方法接口
+ * </p>
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

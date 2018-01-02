@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * com.jrsoft.workOrder.controller WorkOrderRestController
+ * <p>
+ * 生产工单控制器类，提供生产工单数据的维护API方法接口
+ * </p>
  *
  * @author Chris Mao(Zibing) <chris.mao.zb@163.com>
  *

@@ -25,7 +25,7 @@ import com.jrsoft.customer.service.CustomerService;
 
 /**
  * <p>
- * 客户控制器类，提供客户资料维护方法接口
+ * 客户控制器类，提供客户资料维护API方法接口
  * <dl>
  * <dt>GET: customers/api/list?page=1&rows=20&searchValue=</dt>
  * <dd>按页码返回（符合查询条件或是全部）客户数据列表，需要拥有<code>customer:list</code>权限</dd>
