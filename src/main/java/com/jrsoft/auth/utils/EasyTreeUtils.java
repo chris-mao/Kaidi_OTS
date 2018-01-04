@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jrsoft.auth.entity.AuthPermission;
-import com.jrsoft.common.EasyTreeNode;
+import com.jrsoft.easyui.EasyTreeNode;
 
 /**
  * 递归获取树节点集合

@@ -18,7 +18,7 @@ import com.jrsoft.auth.entity.AuthRole;
 import com.jrsoft.auth.entity.AuthRolePermissionReleation;
 import com.jrsoft.auth.entity.AuthUser;
 import com.jrsoft.auth.service.AuthRoleService;
-import com.jrsoft.common.EasyDataGrid;
+import com.jrsoft.easyui.EasyDataGrid;
 
 /**
  * 系统角色服务接口实现类

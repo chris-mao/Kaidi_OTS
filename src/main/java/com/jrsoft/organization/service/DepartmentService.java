@@ -6,7 +6,7 @@ package com.jrsoft.organization.service;
 import java.util.List;
 
 import com.jrsoft.app.service.AbstractDbService;
-import com.jrsoft.common.EasyDataGrid;
+import com.jrsoft.easyui.EasyDataGrid;
 import com.jrsoft.organization.entity.Department;
 
 /**

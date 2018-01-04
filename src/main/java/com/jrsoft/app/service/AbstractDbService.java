@@ -2,7 +2,7 @@ package com.jrsoft.app.service;
 
 import java.util.List;
 import com.github.pagehelper.PageInfo;
-import com.jrsoft.common.EasyDataGrid;
+import com.jrsoft.easyui.EasyDataGrid;
 
 /**
  * 数据库操作接口

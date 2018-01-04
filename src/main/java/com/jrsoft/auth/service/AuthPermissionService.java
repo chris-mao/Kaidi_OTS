@@ -8,7 +8,7 @@ import com.jrsoft.app.service.AbstractDbService;
 import com.jrsoft.auth.entity.AuthPermission;
 import com.jrsoft.auth.entity.AuthRole;
 import com.jrsoft.auth.entity.AuthUser;
-import com.jrsoft.common.EasyDataGrid;
+import com.jrsoft.easyui.EasyDataGrid;
 
 /**
  * 系统权限业务接口

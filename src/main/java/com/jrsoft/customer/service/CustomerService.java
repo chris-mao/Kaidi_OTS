@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.jrsoft.app.service.AbstractDbService;
-import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.customer.entity.Customer;
 import com.jrsoft.customer.entity.CustomerSite;
+import com.jrsoft.easyui.EasyDataGrid;
 
 /**
  * 客户业务接口

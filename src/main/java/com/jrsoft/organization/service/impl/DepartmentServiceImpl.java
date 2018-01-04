@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jrsoft.auth.utils.EasyTreeUtils;
-import com.jrsoft.common.EasyDataGrid;
+import com.jrsoft.easyui.EasyDataGrid;
 import com.jrsoft.organization.dao.DepartmentDAO;
 import com.jrsoft.organization.entity.Department;
 import com.jrsoft.organization.service.DepartmentService;

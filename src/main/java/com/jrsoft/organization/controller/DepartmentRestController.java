@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.common.JsonResult;
+import com.jrsoft.easyui.EasyDataGrid;
 import com.jrsoft.organization.entity.Department;
 import com.jrsoft.organization.entity.Employee;
 import com.jrsoft.organization.service.DepartmentService;

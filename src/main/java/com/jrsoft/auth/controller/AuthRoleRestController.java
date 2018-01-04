@@ -22,8 +22,8 @@ import com.jrsoft.auth.entity.AuthPermission;
 import com.jrsoft.auth.entity.AuthRole;
 import com.jrsoft.auth.service.AuthPermissionService;
 import com.jrsoft.auth.service.AuthRoleService;
-import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.common.JsonResult;
+import com.jrsoft.easyui.EasyDataGrid;
 
 /**
  * <p>

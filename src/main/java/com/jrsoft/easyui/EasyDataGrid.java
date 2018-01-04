@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jrsoft.common;
+package com.jrsoft.easyui;
 
 import java.util.List;
 

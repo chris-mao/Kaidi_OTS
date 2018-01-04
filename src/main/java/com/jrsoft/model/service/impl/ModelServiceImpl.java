@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jrsoft.common.EasyDataGrid;
+import com.jrsoft.easyui.EasyDataGrid;
 import com.jrsoft.model.dao.ModelDAO;
 import com.jrsoft.model.entity.Model;
 import com.jrsoft.model.service.ModelService;

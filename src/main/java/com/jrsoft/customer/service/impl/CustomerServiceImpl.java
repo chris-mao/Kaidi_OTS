@@ -12,11 +12,11 @@ import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.customer.dao.CustomerDAO;
 import com.jrsoft.customer.entity.Customer;
 import com.jrsoft.customer.entity.CustomerSite;
 import com.jrsoft.customer.service.CustomerService;
+import com.jrsoft.easyui.EasyDataGrid;
 
 /**
  * 客户服务接口实现类

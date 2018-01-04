@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.jrsoft.common.EasyTreeNode;
+import com.jrsoft.easyui.EasyTreeNode;
 
 /**
  * 部门实体类

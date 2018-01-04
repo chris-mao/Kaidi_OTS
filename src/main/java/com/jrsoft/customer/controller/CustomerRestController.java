@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jrsoft.common.EasyDataGrid;
 import com.jrsoft.common.JsonResult;
 import com.jrsoft.customer.entity.Customer;
 import com.jrsoft.customer.entity.CustomerSite;
 import com.jrsoft.customer.service.CustomerService;
+import com.jrsoft.easyui.EasyDataGrid;
 
 /**
  * <p>

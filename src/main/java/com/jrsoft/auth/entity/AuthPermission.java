@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.jrsoft.auth.AuthPermissionKindEnum;
-import com.jrsoft.common.EasyTreeNode;
+import com.jrsoft.easyui.EasyTreeNode;
 
 /**
  * 权限实体类

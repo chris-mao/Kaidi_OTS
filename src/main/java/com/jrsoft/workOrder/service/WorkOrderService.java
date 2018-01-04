@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jrsoft.app.service.AbstractDbService;
-import com.jrsoft.common.EasyDataGrid;
+import com.jrsoft.easyui.EasyDataGrid;
 import com.jrsoft.workOrder.entity.WorkOrder;
 
 /**
