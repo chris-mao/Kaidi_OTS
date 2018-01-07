@@ -102,6 +102,11 @@ public class SalesOrder implements Serializable {
 	 */
 	@Min(value = 1)
 	private int qty;
+	
+	/**
+	 * 销售单价
+	 */
+	private double unitPrice;
 
 	/**
 	 * 特殊要求
@@ -362,16 +367,28 @@ public class SalesOrder implements Serializable {
 		this.quarter = quarter;
 	}
 
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+	
+	public double getAmount() {
+		return qty * unitPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "SalesOrder [orderId=" + orderId + ", orderNumber=" + orderNumber + ", customerId=" + customerId
 				+ ", customerName=" + customerName + ", billToId=" + billToId + ", billTo=" + billTo + ", shipToId="
 				+ shipToId + ", shipTo=" + shipTo + ", imprest=" + imprest + ", quarter=" + quarter + ", modelId="
-				+ modelId + ", modelName=" + modelName + ", specific=" + specific + ", qty=" + qty + ", specialMemo="
-				+ specialMemo + ", workshop=" + workshop + ", workshopName=" + workshopName + ", serialNumber="
-				+ serialNumber + ", rtd=" + rtd + ", atd=" + atd + ", creator=" + creator + ", creatorName="
-				+ creatorName + ", available=" + available + ", createdTime=" + createdTime + ", updateTime="
-				+ updateTime + "]";
+				+ modelId + ", modelName=" + modelName + ", specific=" + specific + ", qty=" + qty + ", unitPrice="
+				+ unitPrice + ", specialMemo=" + specialMemo + ", workshop=" + workshop + ", workshopName="
+				+ workshopName + ", serialNumber=" + serialNumber + ", rtd=" + rtd + ", atd=" + atd + ", creator="
+				+ creator + ", creatorName=" + creatorName + ", available=" + available + ", createdTime=" + createdTime
+				+ ", updateTime=" + updateTime + "]";
 	}
 
 }
