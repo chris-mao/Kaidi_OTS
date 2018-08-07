@@ -47,14 +47,20 @@ public class JrShiroRealm extends AuthorizingRealm {
 	private final static Logger logger = LoggerFactory.getLogger(JrShiroRealm.class);
 
 	/**
-	 * 
+	 * {@link com.jrsoft.auth.service.AuthUserService}
 	 */
 	@Resource
 	private AuthUserService authUserService;
 
+	/**
+	 * {@link com.jrsoft.auth.service.AuthRoleService}
+	 */
 	@Resource
 	private AuthRoleService authRoleService;
 
+	/**
+	 * {@link com.jrsoft.auth.service.AuthPermissionService}
+	 */
 	@Resource
 	private AuthPermissionService authPermissionService;
 
@@ -83,10 +89,12 @@ public class JrShiroRealm extends AuthorizingRealm {
 			}
 		}
 
-		// 获取用户特有的权限（暂未实现）
+		// 获取用户特有的权限
+		logger.info("==> 读取用户[" + user.getUserName() + "]独有的权限...");
 		List<AuthPermission> permissions = this.authPermissionService.findIndividualPermissions(user);
 		if (null != permissions) {
 			for (AuthPermission permission : permissions) {
+				logger.info("==> 获取权限[" + permission.getPermissionName() + "]");
 				authorizationInfo.addStringPermission(permission.getPermissionName());
 			}
 		}
@@ -116,11 +124,6 @@ public class JrShiroRealm extends AuthorizingRealm {
 		} else if (user.getState() == AuthUserStateEnum.EXPIRED) { // 帐号过期
 			throw new ExpiredCredentialsException();
 		}
-
-		// AuthUserDecorator userDecorator = new AuthUserDecorator(user,
-		// customerService);
-		// SecurityUtils.getSubject().getSession().setAttribute("userDecorator",
-		// userDecorator);
 
 		SimpleAuthenticationInfo authInfo = new SimpleAuthenticationInfo(user, user.getPassword(),
 				ByteSource.Util.bytes(user.getCredentialsSalt()), getName());
